@@ -20,6 +20,11 @@
   --cloud: #D6CCB5;
   --teal: #2A7B72;
   --plum: #7B4A6B;
+  --slate: #5B6470;
+  --moss: #7E7A2E;
+  --wisteria: #6A5A9C;
+  --sky: #3E7CA6;
+  --rose: #B5546E;
   --shadow: rgba(42,31,20,0.08);
 }
 *{margin:0;padding:0;box-sizing:border-box}
@@ -56,8 +61,12 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .controls-inner{max-width:1200px;margin:0 auto;padding:.6rem 1.5rem .5rem}
 
 /* Era nav */
-.era-nav{display:flex;justify-content:center;gap:0;margin-bottom:.5rem;overflow-x:auto;-webkit-overflow-scrolling:touch}
-.era-nav a{font-family:'Cormorant Garamond',serif;font-size:.82rem;letter-spacing:.16em;text-transform:uppercase;color:var(--cloud);text-decoration:none;padding:.65rem 1.3rem;white-space:nowrap;transition:all .3s;border-bottom:2px solid transparent;margin-bottom:-2px;opacity:.7}
+.era-nav{display:flex;gap:0;margin-bottom:.5rem;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.era-nav::-webkit-scrollbar,.topic-cards::-webkit-scrollbar{display:none}
+.era-nav>:first-child{margin-left:auto}
+.era-nav>:last-child{margin-right:auto}
+.era-nav .nav-sep{align-self:center;color:var(--ochre);opacity:.5;padding:0 .3rem}
+.era-nav a{font-family:'Cormorant Garamond',serif;font-size:.82rem;letter-spacing:.16em;text-transform:uppercase;color:var(--cloud);text-decoration:none;padding:.65rem .78rem;white-space:nowrap;transition:all .3s;border-bottom:2px solid transparent;margin-bottom:-2px;opacity:.7}
 .era-nav a:hover,.era-nav a.active{color:var(--ochre);border-bottom-color:var(--ochre);opacity:1}
 
 /* Search row */
@@ -73,30 +82,29 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .clear-btn:hover{background:var(--vermillion);border-color:var(--vermillion);color:var(--cream)}
 
 /* ===== TOPIC CARDS ===== */
-.topic-cards{display:flex;flex-wrap:wrap;gap:.45rem;justify-content:center}
-.topic-card{font-family:'Cormorant Garamond',serif;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;padding:.45rem .95rem;border:1px solid rgba(245,236,215,.15);color:var(--cloud);cursor:pointer;transition:all .25s;border-radius:2px;user-select:none;white-space:nowrap;opacity:.65;position:relative}
-.topic-card:hover{opacity:1;border-color:rgba(245,236,215,.3)}
-.topic-card.active{opacity:1;color:var(--cream);font-weight:600}
+.topic-cards{display:flex;flex-wrap:wrap;gap:.4rem;justify-content:center;scrollbar-width:none}
+.topic-card{font-family:'Cormorant Garamond',serif;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;padding:.36rem .85rem;background:none;border:1px solid var(--topic);color:var(--topic-light);cursor:pointer;transition:all .25s;border-radius:2px;user-select:none;white-space:nowrap;opacity:.65;position:relative}
+.topic-card:hover{opacity:1}
+.topic-card.active{opacity:1;background:var(--topic);color:var(--topic-on,var(--cream));font-weight:600}
 .topic-card .card-count{font-size:.66rem;opacity:.6;margin-left:.3rem}
 
-/* Topic colors */
-.topic-card[data-topic="event"]{border-color:var(--ochre);color:var(--ochre)}
-.topic-card[data-topic="event"].active{background:var(--ochre);color:var(--ink);border-color:var(--ochre)}
-.topic-card[data-topic="religion"]{border-color:var(--prussian);color:var(--foam)}
-.topic-card[data-topic="religion"].active{background:var(--prussian);color:var(--cream);border-color:var(--prussian)}
-.topic-card[data-topic="mythology"]{border-color:var(--vermillion);color:#e88a80}
-.topic-card[data-topic="mythology"].active{background:var(--vermillion);color:var(--cream);border-color:var(--vermillion)}
-.topic-card[data-topic="contact"]{border-color:var(--teal);color:#5cc4b8}
-.topic-card[data-topic="contact"].active{background:var(--teal);color:var(--cream);border-color:var(--teal)}
-.topic-card[data-topic="loanword"]{border-color:var(--bark);color:var(--cloud)}
-.topic-card[data-topic="loanword"].active{background:var(--bark);color:var(--cream);border-color:var(--bark)}
-.topic-card[data-topic="culture"]{border-color:var(--sage);color:#9ab88d}
-.topic-card[data-topic="culture"].active{background:var(--sage);color:var(--cream);border-color:var(--sage)}
-.topic-card[data-topic="cult"]{border-color:var(--plum);color:#c48ab3}
-.topic-card[data-topic="cult"].active{background:var(--plum);color:var(--cream);border-color:var(--plum)}
+/* Topic colors — set once per topic, used by both the filter buttons and the entry cards.
+   --topic: main colour · --topic-light: readable on the dark control bar · --topic-on: text on a --topic fill */
+[data-topic="event"]{--topic:var(--ochre);--topic-light:var(--ochre);--topic-on:var(--ink)}
+[data-topic="religion"]{--topic:var(--prussian);--topic-light:var(--foam)}
+[data-topic="mythology"]{--topic:var(--vermillion);--topic-light:#e88a80}
+[data-topic="contact"]{--topic:var(--teal);--topic-light:#5cc4b8}
+[data-topic="loanword"]{--topic:var(--bark);--topic-light:var(--cloud)}
+[data-topic="culture"]{--topic:var(--sage);--topic-light:#9ab88d}
+[data-topic="cult"]{--topic:var(--plum);--topic-light:#c48ab3}
+[data-topic="empire"]{--topic:var(--slate);--topic-light:#a9b4c2}
+[data-topic="peoples"]{--topic:var(--moss);--topic-light:#c9c36e}
+[data-topic="language"]{--topic:var(--wisteria);--topic-light:#b1a4dd}
+[data-topic="science"]{--topic:var(--sky);--topic-light:#86bfe2}
+[data-topic="women"]{--topic:var(--rose);--topic-light:#e79db2}
 
 /* ===== ERA SECTIONS ===== */
-.era-section{position:relative;padding:4rem 1.5rem 3rem;scroll-margin-top:160px}
+.era-section{position:relative;padding:4rem 1.5rem 3rem;scroll-margin-top:calc(var(--bar-h,215px) - 55px)}
 .era-section::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:1px;height:50px;background:linear-gradient(to bottom,transparent,var(--ochre))}
 .era-header{text-align:center;margin-bottom:3rem;position:relative}
 .era-header .era-kanji{font-family:'Noto Serif JP',serif;font-size:clamp(2.2rem,5.5vw,4rem);font-weight:700;color:var(--prussian);opacity:.09;position:absolute;top:-1.2rem;left:50%;transform:translateX(-50%);white-space:nowrap;pointer-events:none}
@@ -108,31 +116,16 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 /* ===== ENTRY GRID ===== */
 .entry-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:1.7rem}
 
-.entry-card{background:var(--rice);border:1px solid rgba(180,165,135,.4);padding:1.8rem;box-shadow:3px 3px 0 var(--shadow);transition:box-shadow .3s,transform .3s,opacity .5s;opacity:0;transform:translateY(20px);position:relative;overflow:hidden}
-.entry-card.visible{opacity:1;transform:translateY(0)}
+.entry-card{background:var(--rice);border:1px solid rgba(180,165,135,.4);padding:1.8rem;box-shadow:3px 3px 0 var(--shadow);transition:box-shadow .3s,transform .3s,opacity .5s;position:relative;overflow:hidden}
+.entry-card.pre-reveal{opacity:0;transform:translateY(20px)}
 .entry-card:hover{box-shadow:5px 5px 0 rgba(42,31,20,.12);transform:translateY(-2px)}
 .entry-card.search-match{box-shadow:0 0 0 2px var(--ochre),3px 3px 0 var(--shadow)}
 .entry-card.hidden{display:none}
-.entry-card.full-width{grid-column:1/-1}
 
 /* Entry type strip */
-.entry-card::after{content:'';position:absolute;top:0;left:0;width:4px;height:100%}
-.entry-card[data-topic="event"]::after{background:var(--ochre)}
-.entry-card[data-topic="religion"]::after{background:var(--prussian)}
-.entry-card[data-topic="mythology"]::after{background:var(--vermillion)}
-.entry-card[data-topic="contact"]::after{background:var(--teal)}
-.entry-card[data-topic="loanword"]::after{background:var(--bark)}
-.entry-card[data-topic="culture"]::after{background:var(--sage)}
-.entry-card[data-topic="cult"]::after{background:var(--plum)}
+.entry-card::after{content:'';position:absolute;top:0;left:0;width:4px;height:100%;background:var(--topic)}
 
-.entry-topic-label{font-family:'Cormorant Garamond',serif;font-size:.75rem;letter-spacing:.18em;text-transform:uppercase;font-weight:600;margin-bottom:.4rem;display:inline-block;padding:.2rem .55rem;border-radius:1px}
-.entry-card[data-topic="event"] .entry-topic-label{color:var(--ochre);background:rgba(196,146,58,.08)}
-.entry-card[data-topic="religion"] .entry-topic-label{color:var(--prussian);background:rgba(27,58,92,.08)}
-.entry-card[data-topic="mythology"] .entry-topic-label{color:var(--vermillion);background:rgba(197,61,45,.08)}
-.entry-card[data-topic="contact"] .entry-topic-label{color:var(--teal);background:rgba(42,123,114,.08)}
-.entry-card[data-topic="loanword"] .entry-topic-label{color:var(--bark);background:rgba(92,61,46,.08)}
-.entry-card[data-topic="culture"] .entry-topic-label{color:var(--sage);background:rgba(107,127,94,.08)}
-.entry-card[data-topic="cult"] .entry-topic-label{color:var(--plum);background:rgba(123,74,107,.08)}
+.entry-topic-label{font-family:'Cormorant Garamond',serif;font-size:.75rem;letter-spacing:.18em;text-transform:uppercase;font-weight:600;margin-bottom:.4rem;display:inline-block;padding:.2rem .55rem;border-radius:1px;color:var(--topic);background:color-mix(in srgb,var(--topic) 8%,transparent)}
 
 .entry-date{font-family:'Cormorant Garamond',serif;font-size:.85rem;letter-spacing:.15em;text-transform:uppercase;color:var(--vermillion);font-weight:600;margin-bottom:.2rem}
 .entry-title{font-family:'Cormorant Garamond',serif;font-size:1.45rem;font-weight:600;color:var(--prussian);line-height:1.3;margin-bottom:.6rem}
@@ -184,15 +177,63 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .era-earlymodern{background:linear-gradient(180deg,#E3D9BE,#DDD3B4)}
 .era-modern{background:linear-gradient(180deg,#DDD3B4,#D8CCAB)}
 
+/* ===== OVERVIEW (period strip) ===== */
+.overview{padding:3rem 1.5rem .5rem;text-align:center}
+.overview-title{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:300;color:var(--prussian);letter-spacing:.08em;margin-bottom:1.5rem}
+.overview-title span{font-family:'Noto Serif JP',serif;font-size:1rem;color:var(--bark);opacity:.55;letter-spacing:.25em;margin-right:.7rem}
+.period-strip{max-width:1200px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:center;gap:1.2rem 1.5rem}
+.period-group{display:flex;flex-direction:column;gap:.4rem;max-width:100%}
+.period-group-label{font-family:'Cormorant Garamond',serif;font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;font-weight:600;color:var(--vermillion);text-align:left;text-decoration:none;padding-bottom:.2rem;border-bottom:1px solid rgba(197,61,45,.35)}
+.period-tiles{display:flex;flex-wrap:wrap;gap:4px}
+.period{flex:1 0 6.4rem;max-width:8.5rem;padding:.6rem .3rem .55rem;background:var(--rice);border:1px solid rgba(180,165,135,.4);color:var(--ink);text-decoration:none;transition:background .25s,transform .25s}
+.period:hover{background:var(--cream);transform:translateY(-2px)}
+.period span{display:block}
+.period-kanji{font-family:'Noto Serif JP',serif;font-size:1.25rem;font-weight:600;color:var(--prussian);line-height:1.35}
+.period-name{font-family:'Cormorant Garamond',serif;font-size:.88rem;font-weight:600;letter-spacing:.03em;line-height:1.25}
+.period-dates{font-size:.7rem;font-style:italic;color:var(--bark);line-height:1.3;margin-top:.15rem}
+.overview-note{max-width:640px;margin:1.3rem auto 0;font-size:.88rem;font-style:italic;line-height:1.55;color:var(--bark);opacity:.8}
+
+/* ===== REFERENCE SECTIONS (figures, glossary, reading) ===== */
+.ref-section{background:#D8CCAB}
+.figure-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fill,minmax(16rem,1fr));gap:.8rem}
+.figure{display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-start;width:100%;text-align:left;font-family:inherit;color:inherit;background:var(--rice);border:1px solid rgba(180,165,135,.4);padding:.85rem 1rem .9rem;cursor:pointer;box-shadow:2px 2px 0 var(--shadow);transition:box-shadow .3s,transform .3s}
+.figure:hover{box-shadow:4px 4px 0 rgba(42,31,20,.12);transform:translateY(-2px)}
+.figure span{display:block}
+.figure-name{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:600;color:var(--prussian);line-height:1.3}
+.figure-name .figure-kanji{display:inline-block;white-space:nowrap;font-family:'Noto Serif JP',serif;font-size:.78rem;font-weight:400;color:var(--bark);opacity:.7;margin-left:.3rem}
+.figure-dates{font-family:'Cormorant Garamond',serif;font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;font-weight:600;color:var(--vermillion);margin-top:.1rem}
+.figure-role{font-size:.98rem;line-height:1.5;color:var(--bark);margin-top:.3rem}
+.glossary-list{max-width:1200px;margin:0 auto;columns:3 19rem;column-gap:2.5rem}
+.gl-item{break-inside:avoid;padding:.65rem 0;border-bottom:1px solid rgba(92,61,46,.15)}
+.gl-item dt{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:600;color:var(--prussian)}
+.gl-item dt span{font-family:'Noto Serif JP',serif;font-size:.78rem;font-weight:400;color:var(--bark);opacity:.7;margin-left:.35rem}
+.gl-item dd{font-size:1rem;line-height:1.6;color:var(--bark)}
+.reading-list{max-width:1000px;margin:0 auto;columns:2 22rem;column-gap:3rem}
+.reading-group{break-inside:avoid;margin-bottom:1.8rem}
+.reading-group h3{font-family:'Cormorant Garamond',serif;font-size:.8rem;letter-spacing:.18em;text-transform:uppercase;font-weight:600;color:var(--vermillion);margin-bottom:.4rem}
+.reading-group li{list-style:none;font-size:1rem;line-height:1.5;color:var(--bark);padding:.3rem 0 .3rem 1.1rem;text-indent:-1.1rem}
+.reading-group cite{color:var(--ink)}
+
+@media(max-width:1150px){
+  .era-nav a{padding:.65rem .5rem;letter-spacing:.1em}
+}
 @media(max-width:800px){
   .entry-grid{grid-template-columns:1fr}
-  .entry-card.full-width{grid-column:auto}
   .era-nav a{padding:.55rem .8rem;font-size:.72rem}
-  .topic-cards{gap:.3rem}
-  .topic-card{font-size:.68rem;padding:.35rem .65rem}
+  .topic-cards{gap:.3rem;flex-wrap:nowrap;justify-content:flex-start;overflow-x:auto;padding-bottom:.35rem;-webkit-overflow-scrolling:touch}
+  .topic-card{flex:none;font-size:.68rem;padding:.35rem .65rem}
   .controls-inner{padding:.5rem 1rem .4rem}
+  .overview{padding-top:2rem}
+}
+
+.noscript{text-align:center;padding:4rem 2rem;font-size:1.1rem;font-style:italic;color:var(--bark)}
+
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition:none!important}
 }
 </style>
+<noscript><style>.controls,.hero-stats,.overview,.ref-section{display:none}</style></noscript>
 </head>
 <body>
 
@@ -206,8 +247,8 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
   <p class="hero-desc">Religion, mythology, foreign contact, loanwords, and the pivotal events that shaped a civilization across sixteen thousand years.</p>
   <div class="hero-stats">
     <div class="hero-stat"><div class="hero-stat-num" id="totalEntries">—</div><div class="hero-stat-label">Total Entries</div></div>
-    <div class="hero-stat"><div class="hero-stat-num">5</div><div class="hero-stat-label">Eras</div></div>
-    <div class="hero-stat"><div class="hero-stat-num">7</div><div class="hero-stat-label">Topics</div></div>
+    <div class="hero-stat"><div class="hero-stat-num" id="statEras">—</div><div class="hero-stat-label">Eras</div></div>
+    <div class="hero-stat"><div class="hero-stat-num" id="statTopics">—</div><div class="hero-stat-label">Topics</div></div>
     <div class="hero-stat"><div class="hero-stat-num">16,000+</div><div class="hero-stat-label">Years</div></div>
   </div>
   <div class="hero-scroll"><span>Scroll to explore</span><div class="arrow">⌄</div></div>
@@ -218,210 +259,59 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 <!-- CONTROLS -->
 <div class="controls">
 <div class="controls-inner">
-  <nav class="era-nav" id="eraNav">
-    <a href="#prehistoric">Prehistoric & Ancient</a>
-    <a href="#classical">Classical</a>
-    <a href="#feudal">Feudal</a>
-    <a href="#earlymodern">Early Modern</a>
-    <a href="#modern">Modern</a>
-  </nav>
+  <nav class="era-nav" id="eraNav" aria-label="Sections"><span class="nav-sep" aria-hidden="true">·</span><a href="#figures">Figures</a><a href="#glossary">Glossary</a><a href="#reading">Reading</a></nav>
   <div class="search-row">
-    <div class="search-wrap"><input type="text" class="search-input" id="searchInput" placeholder="Search entries, eras, religions, countries, loanwords…" autocomplete="off"></div>
-    <div class="search-count" id="searchCount"></div>
-    <button class="clear-btn" id="clearBtn" onclick="clearAll()">Clear</button>
+    <div class="search-wrap"><input type="text" class="search-input" id="searchInput" placeholder="Search entries, eras, religions, countries, loanwords…" aria-label="Search entries" autocomplete="off"></div>
+    <div class="search-count" id="searchCount" aria-live="polite"></div>
+    <button type="button" class="clear-btn" id="clearBtn">Clear</button>
   </div>
-  <div class="topic-cards" id="topicCards">
-    <div class="topic-card" data-topic="event" onclick="toggleTopic(this)">⚡ Historical Events<span class="card-count" id="count-event"></span></div>
-    <div class="topic-card" data-topic="religion" onclick="toggleTopic(this)">⛩️ Religions & Sects<span class="card-count" id="count-religion"></span></div>
-    <div class="topic-card" data-topic="mythology" onclick="toggleTopic(this)">🐉 Mythology<span class="card-count" id="count-mythology"></span></div>
-    <div class="topic-card" data-topic="contact" onclick="toggleTopic(this)">🌐 Foreign Contact<span class="card-count" id="count-contact"></span></div>
-    <div class="topic-card" data-topic="loanword" onclick="toggleTopic(this)">🗣️ Loanwords<span class="card-count" id="count-loanword"></span></div>
-    <div class="topic-card" data-topic="culture" onclick="toggleTopic(this)">🎭 Culture & Arts<span class="card-count" id="count-culture"></span></div>
-    <div class="topic-card" data-topic="cult" onclick="toggleTopic(this)">🔮 Cults & New Religions<span class="card-count" id="count-cult"></span></div>
-  </div>
+  <div class="topic-cards" id="topicCards"></div>
 </div>
 </div>
+
+<!-- OVERVIEW — period strip, rendered from PERIODS -->
+<section class="overview" id="overview">
+<h2 class="overview-title"><span lang="ja">年表</span>Periods at a Glance</h2>
+<div class="period-strip" id="periodStrip"></div>
+<p class="overview-note">Dates are the conventional ones. Radiocarbon studies since 2003 suggest Yayoi rice farming began centuries earlier than shown, around the 10th century BCE; the question is still debated.</p>
+</section>
 
 <div class="no-results" id="noResults"><h3>何も見つかりません</h3><p>No entries matched your filters. Try adjusting your search or topic selection.</p></div>
 
-<!-- ======================================================================== -->
-<!-- ERA 1: PREHISTORIC & ANCIENT -->
-<!-- ======================================================================== -->
-<section class="era-section era-prehistoric" id="prehistoric">
-<div class="era-header"><div class="era-kanji">先史・古代</div><h2>Prehistoric &amp; Ancient Japan</h2><div class="era-dates">c. 14,000 BCE – 710 CE</div><div class="era-divider"></div></div>
-<div class="entry-grid">
-
-<div class="entry-card" data-topic="event" data-era="prehistoric" data-search="jomon period pottery oldest world hunter gatherer 14000 bce prehistoric"><div class="entry-topic-label">Historical Event</div><div class="entry-date">c. 14,000 – 300 BCE</div><div class="entry-title">Jōmon Period — World's Oldest Pottery Culture</div><div class="entry-text">Hunter-gatherers produce the world's oldest known pottery — cord-marked Jōmon-ware — establishing a remarkably stable culture lasting over 10,000 years across the archipelago. Complex villages, pit dwellings, and elaborate burial practices develop without agriculture.</div><div class="entry-tags"><span class="etag">Prehistoric</span><span class="etag">Pottery</span></div></div>
-
-<div class="entry-card" data-topic="religion" data-era="prehistoric" data-search="animism shamanism dogu clay figurines nature spirits jomon tama soul"><div class="entry-topic-label">Religion</div><div class="entry-date">c. 14,000 – 300 BCE</div><div class="entry-title">Jōmon Animism &amp; Shamanism</div><div class="entry-text">The earliest spiritual practice — all things possess spirit (tama). Shamans communed with nature spirits through trances and rituals. Dogū clay figurines with exaggerated features suggest fertility cults and healing practices tied to life-death cycles.</div><div class="entry-tags"><span class="etag">Animism</span><span class="etag">Shamanism</span><span class="etag">Dogū</span></div></div>
-
-<div class="entry-card" data-topic="event" data-era="prehistoric" data-search="yayoi period rice agriculture wet rice 300 bce bronze iron migration continental asia"><div class="entry-topic-label">Historical Event</div><div class="entry-date">c. 300 BCE – 300 CE</div><div class="entry-title">Yayoi Revolution — Rice Agriculture Transforms Japan</div><div class="entry-text">Wet-rice cultivation arrives from continental Asia, triggering population growth, social stratification, and the first organized warfare. Bronze bells (dōtaku) and iron tools transform material culture. Distinct political entities — including Yamatai under the shamanic queen Himiko — emerge.</div><div class="entry-tags"><span class="etag">Agriculture</span><span class="etag">Himiko</span></div></div>
-
-<div class="entry-card" data-topic="contact" data-era="prehistoric" data-search="china korea baekje goguryeo silla himiko yamatai wei zhi envoy 238 ce writing kanji confucianism continental"><div class="entry-topic-label">Foreign Contact</div><div class="entry-date">c. 300 BCE – 538 CE</div><div class="entry-title">China &amp; Korea — First Contact &amp; Cultural Transmission</div><div class="entry-text">Chinese histories (Wei Zhi) record Himiko's envoys to the Cao Wei court in 238 CE. Korean kingdoms — Baekje, Goguryeo, Silla — transmit Chinese writing (kanji), Confucian ethics, Buddhist sutras, bronze-casting, iron-working, and silk-weaving to Japan. The scholar Wani brings the Analects of Confucius.</div><div class="cflag">🇨🇳 China &amp; 🇰🇷 Korean Peninsula</div><div class="entry-tags"><span class="etag">Diplomacy</span><span class="etag">Writing</span><span class="etag">Buddhism</span></div></div>
-
-<div class="entry-card" data-topic="religion" data-era="prehistoric" data-search="proto-shinto kami worship agriculture purification harae himorogi sacred space"><div class="entry-topic-label">Religion</div><div class="entry-date">c. 300 BCE – 538 CE</div><div class="entry-title">Proto-Shinto — Kami Worship Crystallizes</div><div class="entry-text">Animism evolves into structured veneration of kami — sacred spirits of nature, ancestors, and creation forces. Agricultural rites, ritual purification (harae), sacred groves (himorogi), and shrine spaces define emerging practice. No scriptures, no founder — Shinto grows organically from the land.</div><div class="entry-tags"><span class="etag">Kami</span><span class="etag">Shinto Origins</span></div></div>
-
-<div class="entry-card" data-topic="mythology" data-era="prehistoric" data-search="izanagi izanami kuniumi creation islands amaterasu susanoo onogoroshima spear"><div class="entry-topic-label">Mythology</div><div class="entry-date">Age of Gods</div><div class="entry-title">Kuniumi — The Birth of the Islands</div><div class="entry-text">The divine couple Izanagi and Izanami stir the primordial ocean with a jeweled spear. Drops form Onogoroshima, the first island. They birth the Japanese archipelago and kami of wind, sea, and fire. When Izanami dies giving birth to the fire god, Izanagi descends to Yomi (the underworld) — origin of death and pollution.</div><div class="entry-tags"><span class="etag">Creation</span><span class="etag">Izanagi</span><span class="etag">Izanami</span></div></div>
-
-<div class="entry-card" data-topic="mythology" data-era="prehistoric" data-search="amaterasu cave susanoo ame no uzume kagura mirror sun goddess tenson korin ninigi jimmu emperor imperial regalia"><div class="entry-topic-label">Mythology</div><div class="entry-date">Age of Gods</div><div class="entry-title">Amaterasu, the Imperial Regalia &amp; Divine Descent</div><div class="entry-text">The sun goddess Amaterasu retreats into a cave, plunging the world into darkness. The kami lure her out with a sacred mirror and Ame-no-Uzume's ecstatic dance — origin of kagura. Susanoo slays Yamata no Orochi, discovering the sword Kusanagi. Amaterasu sends her grandson Ninigi to earth with the mirror, sword, and jewel. His descendant Jimmu becomes the first Emperor.</div><div class="entry-tags"><span class="etag">Amaterasu</span><span class="etag">Susanoo</span><span class="etag">Imperial Line</span></div></div>
-
-<div class="entry-card" data-topic="event" data-era="prehistoric" data-search="kofun tomb keyhole yamato clan imperial unification 250 538 haniwa"><div class="entry-topic-label">Historical Event</div><div class="entry-date">c. 250 – 538 CE</div><div class="entry-title">Kofun Period — Rise of the Yamato Imperial State</div><div class="entry-text">Massive keyhole-shaped burial mounds (kofun) signal the rise of the Yamato clan. The largest — Emperor Nintoku's tomb — exceeds the Great Pyramid in area. Haniwa clay figures guard the dead. The Yamato court consolidates control over much of Honshu, forging Japan's first proto-state and claiming divine descent from Amaterasu.</div><div class="entry-tags"><span class="etag">Yamato</span><span class="etag">Kofun Tombs</span></div></div>
-
-<div class="entry-card" data-topic="event" data-era="prehistoric" data-search="asuka buddhism introduction 538 552 prince shotoku seventeen article constitution horyuji taika reforms 645 centralization"><div class="entry-topic-label">Historical Event</div><div class="entry-date">538 – 710 CE</div><div class="entry-title">Buddhism's Arrival &amp; the Taika Reforms</div><div class="entry-text">Buddhism officially enters from Baekje (538/552), sparking the Soga-Mononobe clan conflict. Prince Shōtoku champions Buddhism and issues the Seventeen-Article Constitution (604). The Taika Reforms of 645 centralize government on the Chinese model — land nationalization, tax reform, provincial administration. Japan transforms from a clan confederation into a Chinese-style centralized state.</div><div class="entry-tags"><span class="etag">Buddhism</span><span class="etag">Taika Reforms</span><span class="etag">Shōtoku</span></div></div>
-
-<div class="entry-card" data-topic="loanword" data-era="prehistoric" data-search="kanji chinese characters onyomi writing system sino japanese butsu hotoke temple tera ji kyoo sutra ritsuryoo bunka tetsugaku shizen"><div class="entry-topic-label">Loanwords</div><div class="entry-date">5th – 8th Century</div><div class="entry-title">Chinese Language — The Foundation of Written Japanese</div><div class="entry-text">The adoption of Chinese characters (kanji) and Sino-Japanese on'yomi readings constitutes the most massive linguistic borrowing in Japanese history. Thousands of Chinese-origin compounds form the backbone of Japanese vocabulary for governance, philosophy, religion, and science.</div><div class="lw-block"><div class="lw-label">Chinese-origin vocabulary</div><div class="lw-items"><span class="lw-chip">漢字 <span class="r">kanji</span> <span class="m">— characters</span></span><span class="lw-chip">天皇 <span class="r">tennō</span> <span class="m">— emperor</span></span><span class="lw-chip">仏 <span class="r">butsu</span> <span class="m">— Buddha</span></span><span class="lw-chip">律令 <span class="r">ritsuryō</span> <span class="m">— legal codes</span></span><span class="lw-chip">文化 <span class="r">bunka</span> <span class="m">— culture</span></span><span class="lw-chip">自然 <span class="r">shizen</span> <span class="m">— nature</span></span></div></div></div>
-
-<div class="entry-card" data-topic="religion" data-era="prehistoric" data-search="confucianism daoism yin yang onmyodo five elements chinese ethics hierarchy mandate"><div class="entry-topic-label">Religion</div><div class="entry-date">5th – 7th Century</div><div class="entry-title">Confucianism &amp; Daoism Enter Japan</div><div class="entry-text">Arriving alongside Buddhism as ethical and cosmological frameworks from China. Confucian hierarchy — ruler-subject, parent-child — shaped governance and social order. Daoist concepts of yin-yang, five elements, and directional cosmology became embedded in onmyōdō court divination.</div><div class="entry-tags"><span class="etag">Confucianism</span><span class="etag">Daoism</span><span class="etag">Onmyōdō</span></div></div>
-
-</div></section>
-
-<div class="sdiv"><svg viewBox="0 0 300 30"><path d="M0,15 C50,5 100,25 150,15 C200,5 250,25 300,15" stroke="var(--ochre)" fill="none" stroke-width="1.5"/><circle cx="150" cy="15" r="3" fill="var(--vermillion)"/></svg></div>
-
-<!-- ======================================================================== -->
-<!-- ERA 2: CLASSICAL -->
-<!-- ======================================================================== -->
-<section class="era-section era-classical" id="classical">
-<div class="era-header"><div class="era-kanji">古典時代</div><h2>Classical Japan</h2><div class="era-dates">710 – 1185 CE</div><div class="era-divider"></div></div>
-<div class="entry-grid">
-
-<div class="entry-card" data-topic="event" data-era="classical" data-search="nara period 710 capital todaiji great buddha kojiki nihon shoki tang china model"><div class="entry-topic-label">Historical Event</div><div class="entry-date">710 – 794 CE</div><div class="entry-title">Nara — Japan's First Permanent Capital</div><div class="entry-text">Modeled on Tang Chang'an, Nara becomes the seat of imperial power. The great Tōdai-ji temple and its colossal bronze Buddha symbolize state-Buddhist fusion. The Kojiki (712) and Nihon Shoki (720) codify mythology and imperial genealogy. Monks gain dangerous political influence, prompting the capital's move to Kyoto.</div><div class="entry-tags"><span class="etag">Nara</span><span class="etag">Tōdai-ji</span><span class="etag">Kojiki</span></div></div>
-
-<div class="entry-card" data-topic="event" data-era="classical" data-search="heian period 794 kyoto fujiwara regency tale of genji murasaki shikibu pillow book sei shonagon golden age court aristocracy"><div class="entry-topic-label">Historical Event</div><div class="entry-date">794 – 1185 CE</div><div class="entry-title">Heian Period — The Golden Age of Court Culture</div><div class="entry-text">The capital moves to Heian-kyō (Kyoto). The Fujiwara clan dominates through regency. This era produces The Tale of Genji (world's first novel, by Murasaki Shikibu), The Pillow Book, and an exquisitely refined aristocratic culture. Kana syllabaries develop, enabling Japanese literary expression independent of Chinese. The court's elegance masks growing provincial instability.</div><div class="entry-tags"><span class="etag">Kyoto</span><span class="etag">Fujiwara</span><span class="etag">Genji</span><span class="etag">Kana</span></div></div>
-
-<div class="entry-card" data-topic="religion" data-era="classical" data-search="nara six schools nanto rokushu hossoo yogacara sanron madhyamaka kegon huayan ritsu kusha jojitsu"><div class="entry-topic-label">Religion</div><div class="entry-date">710 – 794 CE</div><div class="entry-title">Nara Six Schools (Nanto Rokushū)</div><div class="entry-text">Hossō (Yogācāra consciousness-only), Sanron (Mādhyamaka emptiness), Kegon (Huayan interdependence), Ritsu (monastic discipline), Kusha, and Jōjitsu — primarily scholastic traditions focused on philosophy over popular devotion, centered at the great Nara temples.</div><div class="entry-tags"><span class="etag">Hossō</span><span class="etag">Kegon</span><span class="etag">Ritsu</span></div></div>
-
-<div class="entry-card" data-topic="religion" data-era="classical" data-search="shingon kukai kobo daishi esoteric mikkyo mantra mandala mudra dainichi nyorai mount koya vajrayana tantric"><div class="entry-topic-label">Religion</div><div class="entry-date">816 CE</div><div class="entry-title">Shingon-shū — Kūkai's Esoteric Buddhism</div><div class="entry-text">Founded by Kūkai (Kōbō Daishi) on Mount Kōya. Esoteric (mikkyō) Buddhism centered on mantra, mandala, and mudra. All phenomena manifest the cosmic Buddha Dainichi Nyorai. Buddhahood achievable in this very body (sokushin jōbutsu). Kūkai also created the kana syllabary and founded Japan's first public school.</div><div class="entry-tags"><span class="etag">Shingon</span><span class="etag">Esoteric</span><span class="etag">Kūkai</span></div></div>
-
-<div class="entry-card" data-topic="religion" data-era="classical" data-search="tendai saicho mount hiei lotus sutra zen pure land mother school enryakuji"><div class="entry-topic-label">Religion</div><div class="entry-date">805 CE</div><div class="entry-title">Tendai-shū — The Mother School</div><div class="entry-text">Founded by Saichō on Mount Hiei. Synthesized the Lotus Sutra, esoteric ritual, Zen meditation, and Pure Land chanting into a comprehensive path. Became the "mother school" from which virtually all later Kamakura-era sects — Pure Land, Zen, Nichiren — would emerge.</div><div class="entry-tags"><span class="etag">Tendai</span><span class="etag">Saichō</span><span class="etag">Lotus Sutra</span></div></div>
-
-<div class="entry-card" data-topic="religion" data-era="classical" data-search="shinbutsu shugo honji suijaku kami buddha fusion synthesis shrine temple jinguji"><div class="entry-topic-label">Religion</div><div class="entry-date">Heian Era</div><div class="entry-title">Shinbutsu-shūgō — Kami-Buddha Fusion</div><div class="entry-text">The dominant religious paradigm for a millennium: Shinto kami reinterpreted as manifestations of Buddhas and bodhisattvas (honji suijaku theory). Amaterasu identified with Dainichi Nyorai. Shrine-temples (jingū-ji) housed both traditions under one roof.</div><div class="entry-tags"><span class="etag">Syncretism</span><span class="etag">Honji Suijaku</span></div></div>
-
-<div class="entry-card" data-topic="contact" data-era="classical" data-search="tang china embassy kentooshi saicho kukai chang'an india sanskrit vajrayana tantric siddham liturgical"><div class="entry-topic-label">Foreign Contact</div><div class="entry-date">7th – 9th Century</div><div class="entry-title">Tang China &amp; India (Indirect) — Esoteric Transmission</div><div class="entry-text">Kūkai and Saichō travel to Tang China and return with transformative teachings. Shingon's rituals trace to Indian Vajrayāna masters who transmitted to China. Sanskrit (Siddhaṃ script) became a sacred liturgical language still used in Shingon ritual. Japan suspends embassies to Tang China in 894 as it develops its own cultural identity.</div><div class="cflag">🇨🇳 Tang China &amp; 🇮🇳 India (indirect)</div><div class="entry-tags"><span class="etag">Kentōshi</span><span class="etag">Sanskrit</span></div></div>
-
-<div class="entry-card" data-topic="loanword" data-era="classical" data-search="sanskrit namu namas devotion sotoba stupa danna dana setsuna ksana mandara mandala kawara kapala"><div class="entry-topic-label">Loanwords</div><div class="entry-date">8th – 12th Century</div><div class="entry-title">Sanskrit-Origin Words via Buddhist Transmission</div><div class="entry-text">Buddhist vocabulary from Sanskrit entered Japanese through Chinese translation, embedding deeply in everyday language far beyond religious context.</div><div class="lw-block"><div class="lw-label">Sanskrit → Chinese → Japanese</div><div class="lw-items"><span class="lw-chip">南無 <span class="r">namu</span> <span class="m">— namas (devotion)</span></span><span class="lw-chip">卒塔婆 <span class="r">sotoba</span> <span class="m">— stūpa</span></span><span class="lw-chip">旦那 <span class="r">danna</span> <span class="m">— dāna (generosity/patron)</span></span><span class="lw-chip">刹那 <span class="r">setsuna</span> <span class="m">— kṣaṇa (instant)</span></span><span class="lw-chip">曼荼羅 <span class="r">mandara</span> <span class="m">— maṇḍala</span></span><span class="lw-chip">瓦 <span class="r">kawara</span> <span class="m">— kapāla (tile)</span></span></div></div></div>
-
-<div class="entry-card" data-topic="mythology" data-era="classical" data-search="kojiki nihon shoki kami bodhisattva mappo latter day law eschatology pure land amida yokai onryo sugawara michizane tenjin kitsune hyakki yagyo"><div class="entry-topic-label">Mythology</div><div class="entry-date">Heian Era</div><div class="entry-title">Mappō, Onryō &amp; the Expanding Supernatural World</div><div class="entry-text">The world enters the "Latter Day of the Law" (mappō) — Buddhist practice degenerates and enlightenment becomes impossible. Vengeful spirits (onryō) terrorize the court: Sugawara no Michizane is deified as Tenjin after earthquakes follow his exile. Kitsune (foxes), tengu, and the hyakki yagyō (night parade of demons) populate Heian folklore.</div><div class="entry-tags"><span class="etag">Mappō</span><span class="etag">Onryō</span><span class="etag">Tenjin</span></div></div>
-
-<div class="entry-card" data-topic="culture" data-era="classical" data-search="onmyodo abe no seimei divination yin yang court ritual astronomy calendar"><div class="entry-topic-label">Culture</div><div class="entry-date">Heian Era</div><div class="entry-title">Onmyōdō — Court Divination &amp; Cosmic Order</div><div class="entry-text">Court-sanctioned system blending Chinese cosmology with native belief. Abe no Seimei, the legendary onmyōji, exemplified its prestige — casting horoscopes, banishing demons, and advising emperors. Directional taboos, lucky days, and ritual purification governed aristocratic life.</div><div class="entry-tags"><span class="etag">Onmyōdō</span><span class="etag">Abe no Seimei</span></div></div>
-
-<div class="entry-card" data-topic="event" data-era="classical" data-search="genpei war 1180 1185 minamoto taira dan no ura samurai rise warrior class"><div class="entry-topic-label">Historical Event</div><div class="entry-date">1180 – 1185 CE</div><div class="entry-title">Genpei War — Rise of the Warrior Class</div><div class="entry-text">The cataclysmic Genpei War between the Taira and Minamoto clans ends Heian court supremacy. The naval battle of Dan-no-ura (1185) — where the child emperor drowns with the imperial sword — becomes one of Japan's defining mythic-historical moments. Minamoto no Yoritomo founds the Kamakura shogunate, inaugurating seven centuries of warrior rule.</div><div class="entry-tags"><span class="etag">Genpei</span><span class="etag">Samurai</span><span class="etag">Dan-no-ura</span></div></div>
-
-</div></section>
-
-<div class="sdiv"><svg viewBox="0 0 300 30"><path d="M0,15 C50,5 100,25 150,15 C200,5 250,25 300,15" stroke="var(--ochre)" fill="none" stroke-width="1.5"/><circle cx="150" cy="15" r="3" fill="var(--vermillion)"/></svg></div>
-
-<!-- ======================================================================== -->
-<!-- ERA 3: FEUDAL -->
-<!-- ======================================================================== -->
-<section class="era-section era-feudal" id="feudal">
-<div class="era-header"><div class="era-kanji">封建時代</div><h2>Feudal Japan</h2><div class="era-dates">1185 – 1603 CE</div><div class="era-divider"></div></div>
-<div class="entry-grid">
-
-<div class="entry-card" data-topic="event" data-era="feudal" data-search="kamakura shogunate bakufu minamoto yoritomo 1185 first military government samurai hojo regents"><div class="entry-topic-label">Historical Event</div><div class="entry-date">1185 – 1333 CE</div><div class="entry-title">Kamakura Shogunate — Japan's First Military Government</div><div class="entry-text">Minamoto no Yoritomo establishes the bakufu in Kamakura, creating a dual government with the imperial court in Kyoto. The Hōjō clan rules as regents after Yoritomo's death. Warrior values — loyalty, discipline, frugality — replace courtly elegance as cultural ideals.</div><div class="entry-tags"><span class="etag">Bakufu</span><span class="etag">Samurai</span></div></div>
-
-<div class="entry-card" data-topic="event" data-era="feudal" data-search="mongol invasion 1274 1281 kublai khan kamikaze divine wind hakata typhoon"><div class="entry-topic-label">Historical Event</div><div class="entry-date">1274 &amp; 1281 CE</div><div class="entry-title">Mongol Invasions — Divine Wind Saves Japan</div><div class="entry-text">Kublai Khan launches two massive invasions — the largest naval assaults in world history until D-Day. Japanese samurai resist on the beaches of Hakata Bay. Both fleets are devastated by typhoons — the "kamikaze" (divine wind). The invasions bankrupt the Kamakura government but cement Japan's belief in divine protection.</div><div class="cflag">🇲🇳 Mongol Empire (Yuan Dynasty)</div><div class="entry-tags"><span class="etag">Mongol Invasion</span><span class="etag">Kamikaze</span></div></div>
-
-<div class="entry-card" data-topic="religion" data-era="feudal" data-search="pure land jodo shu honen jodo shinshu shinran nembutsu amida ikko ikki peasant warrior honganji"><div class="entry-topic-label">Religion</div><div class="entry-date">1175 – 1260s</div><div class="entry-title">Pure Land Revolution — Buddhism for Everyone</div><div class="entry-text">Hōnen founds Jōdo-shū (1175): salvation through exclusive nembutsu — "Namu Amida Butsu." His disciple Shinran radicalizes further with Jōdo Shinshū: even one sincere nembutsu suffices; monks may marry. This evolves into the powerful Hongan-ji institution and the militant Ikkō-ikki peasant-warrior leagues that control entire provinces.</div><div class="entry-tags"><span class="etag">Jōdo-shū</span><span class="etag">Jōdo Shinshū</span><span class="etag">Ikkō-ikki</span></div></div>
-
-<div class="entry-card" data-topic="religion" data-era="feudal" data-search="zen rinzai eisai soto dogen koan shikantaza samurai meditation tea ceremony song china"><div class="entry-topic-label">Religion</div><div class="entry-date">1191 – 1253</div><div class="entry-title">Zen Buddhism — Rinzai &amp; Sōtō</div><div class="entry-text">Eisai introduces Rinzai Zen from Song China (1191): enlightenment through kōan riddles and sudden insight, patronized by samurai. Dōgen founds Sōtō Zen (1227): shikantaza — objectless sitting — where practice itself is enlightenment. Zen reshapes Japanese aesthetics, martial culture, and the tea ceremony.</div><div class="entry-tags"><span class="etag">Rinzai</span><span class="etag">Sōtō</span><span class="etag">Kōan</span></div></div>
-
-<div class="entry-card" data-topic="religion" data-era="feudal" data-search="nichiren lotus sutra namu myoho renge kyo exclusivist prophet fiery prophecy national disaster"><div class="entry-topic-label">Religion</div><div class="entry-date">1253</div><div class="entry-title">Nichiren-shū — The Lotus Sutra Alone</div><div class="entry-text">The prophet-monk Nichiren declares only the Lotus Sutra contains true dharma. Chanting "Namu Myōhō Renge Kyō" is the sole valid practice. Fiercely exclusivist, he condemns all other schools and predicts national disaster if Japan doesn't convert. Repeatedly exiled and nearly executed, his movement grows into one of Japan's most influential religious traditions.</div><div class="entry-tags"><span class="etag">Nichiren</span><span class="etag">Lotus Sutra</span></div></div>
-
-<div class="entry-card" data-topic="event" data-era="feudal" data-search="onin war 1467 1477 sengoku warring states century civil war ashikaga collapse"><div class="entry-topic-label">Historical Event</div><div class="entry-date">1467 – 1477 CE</div><div class="entry-title">Ōnin War — Japan Shatters into Civil War</div><div class="entry-text">A succession dispute in the Ashikaga shogunate ignites the Ōnin War. Kyoto is devastated. The conflict triggers the Sengoku period — a century of constant warfare among hundreds of rival lords (daimyō). The old social order collapses; the age of the self-made warrior begins.</div><div class="entry-tags"><span class="etag">Ōnin War</span><span class="etag">Sengoku</span></div></div>
-
-<div class="entry-card" data-topic="contact" data-era="feudal" data-search="portugal portuguese 1543 tanegashima firearms guns teppo francis xavier 1549 jesuit nagasaki christianity namban"><div class="entry-topic-label">Foreign Contact</div><div class="entry-date">1543 – 1590s</div><div class="entry-title">Portugal — Guns, God, and the Namban Trade</div><div class="entry-text">Portuguese traders land on Tanegashima in 1543, introducing firearms (teppō) that revolutionize warfare. Francis Xavier arrives in 1549, beginning the Jesuit mission. Portuguese merchants establish trade through Nagasaki, importing guns, glass, tobacco, bread, and Christianity. The "Namban" (southern barbarian) trade transforms material culture.</div><div class="cflag">🇵🇹 Portugal</div><div class="entry-tags"><span class="etag">Firearms</span><span class="etag">Jesuits</span><span class="etag">Trade</span></div></div>
-
-<div class="entry-card" data-topic="loanword" data-era="feudal" data-search="portuguese loanwords pan bread tabako tobacco tempura botan button koppu cup karuta cards konpeito candy shabon soap bidoro glass kappa raincoat"><div class="entry-topic-label">Loanwords</div><div class="entry-date">1540s – 1630s</div><div class="entry-title">Portuguese — First European Words in Japanese</div><div class="entry-text">Portuguese loanwords are among the oldest European vocabulary in Japanese, many still in daily use centuries after their introduction.</div><div class="lw-block"><div class="lw-label">Portuguese → Japanese</div><div class="lw-items"><span class="lw-chip">パン <span class="r">pan</span> <span class="m">— bread (pão)</span></span><span class="lw-chip">タバコ <span class="r">tabako</span> <span class="m">— tobacco</span></span><span class="lw-chip">天ぷら <span class="r">tempura</span> <span class="m">— têmporas</span></span><span class="lw-chip">ボタン <span class="r">botan</span> <span class="m">— button (botão)</span></span><span class="lw-chip">カッパ <span class="r">kappa</span> <span class="m">— raincoat (capa)</span></span><span class="lw-chip">コップ <span class="r">koppu</span> <span class="m">— cup (copo)</span></span><span class="lw-chip">カルタ <span class="r">karuta</span> <span class="m">— cards (carta)</span></span><span class="lw-chip">金平糖 <span class="r">konpeitō</span> <span class="m">— candy (confeito)</span></span><span class="lw-chip">シャボン <span class="r">shabon</span> <span class="m">— soap (sabão)</span></span></div></div></div>
-
-<div class="entry-card" data-topic="contact" data-era="feudal" data-search="spain spanish franciscan manila 1596 san felipe twenty six martyrs nagasaki"><div class="entry-topic-label">Foreign Contact</div><div class="entry-date">1590s</div><div class="entry-title">Spain — Franciscans &amp; the Manila Trade</div><div class="entry-text">Spanish Franciscans arrive from Manila competing with Jesuits. The San Felipe incident (1596) leads to the crucifixion of 26 Christians in Nagasaki — Japan's first martyrs. Spain intensifies missionary activity, fueling Hideyoshi's suspicion of foreign religion as a prelude to colonization.</div><div class="cflag">🇪🇸 Spain</div><div class="entry-tags"><span class="etag">Franciscans</span><span class="etag">Martyrs</span></div></div>
-
-<div class="entry-card" data-topic="event" data-era="feudal" data-search="oda nobunaga toyotomi hideyoshi tokugawa ieyasu unification three unifiers enryakuji burned 1582 sekigahara 1600"><div class="entry-topic-label">Historical Event</div><div class="entry-date">1568 – 1603 CE</div><div class="entry-title">The Three Unifiers — Nobunaga, Hideyoshi, Ieyasu</div><div class="entry-text">Oda Nobunaga begins Japan's reunification, burning the Tendai fortress of Enryaku-ji (1571) and crushing the Ikkō-ikki. After his assassination (1582), Toyotomi Hideyoshi completes unification and launches invasions of Korea. Tokugawa Ieyasu wins the Battle of Sekigahara (1600) — the largest samurai battle ever — and founds the Tokugawa shogunate in 1603.</div><div class="entry-tags"><span class="etag">Nobunaga</span><span class="etag">Hideyoshi</span><span class="etag">Sekigahara</span></div></div>
-
-<div class="entry-card" data-topic="culture" data-era="feudal" data-search="zen aesthetics wabi sabi rock garden karesansui tea ceremony chado noh zeami ink painting suiboku muromachi golden pavilion"><div class="entry-topic-label">Culture</div><div class="entry-date">14th – 16th Century</div><div class="entry-title">Zen Aesthetics — Wabi-Sabi, Tea &amp; Noh</div><div class="entry-text">Zen Buddhism's aesthetic influence pervades Japanese culture: rock gardens (karesansui) distill nature to stone and sand; the tea ceremony (chadō) elevates mundane acts to spiritual practice; Noh theater sacralizes myth on stage; ink painting (suiboku-ga) captures essence in empty space. Wabi-sabi — beauty in imperfection and impermanence — becomes a defining Japanese sensibility.</div><div class="entry-tags"><span class="etag">Wabi-Sabi</span><span class="etag">Tea</span><span class="etag">Noh</span></div></div>
-
-<div class="entry-card" data-topic="mythology" data-era="feudal" data-search="bushido warrior tengu oni yokai kappa tanuki kamikaze divine wind noh sacred stage supernatural"><div class="entry-topic-label">Mythology</div><div class="entry-date">Feudal Era</div><div class="entry-title">Warrior Mythos, Yōkai &amp; the Sacred Stage</div><div class="entry-text">The samurai construct bushidō from Zen, Confucianism, and Shinto — a mythology of honor, loyalty, and beautiful death. Feudal folklore expands the supernatural bestiary: tengu, oni, kappa, tanuki. Zeami perfects Noh theater where ghosts, gods, and demons manifest. The kamikaze divine wind becomes central to Japan's identity as a sacred nation.</div><div class="entry-tags"><span class="etag">Bushidō</span><span class="etag">Yōkai</span><span class="etag">Noh</span></div></div>
-
-<div class="entry-card" data-topic="religion" data-era="feudal" data-search="shugendo yamabushi mountain asceticism fire walking waterfall meditation esoteric"><div class="entry-topic-label">Religion</div><div class="entry-date">Throughout Feudal Era</div><div class="entry-title">Shugendō — Mountain Asceticism</div><div class="entry-text">Syncretic path blending esoteric Buddhism, Shinto, and Daoism. Yamabushi mountain monks practiced extreme austerities — fire-walking, waterfall meditation, wilderness fasting — to gain supernatural powers (genjutsu). Neither purely Buddhist nor Shinto, Shugendō embodied Japan's spiritual syncretism.</div><div class="entry-tags"><span class="etag">Shugendō</span><span class="etag">Yamabushi</span></div></div>
-
-<div class="entry-card" data-topic="loanword" data-era="feudal" data-search="chinese zen vocabulary cha tea tofu udon song dynasty"><div class="entry-topic-label">Loanwords</div><div class="entry-date">12th – 13th Century</div><div class="entry-title">Song Chinese — Zen &amp; Culinary Vocabulary</div><div class="entry-text">Song-era Chinese monks brought not only Zen but everyday vocabulary that became staples of Japanese life.</div><div class="lw-block"><div class="lw-label">Song Chinese → Japanese</div><div class="lw-items"><span class="lw-chip">禅 <span class="r">zen</span> <span class="m">— Chan (meditation)</span></span><span class="lw-chip">茶 <span class="r">cha</span> <span class="m">— tea</span></span><span class="lw-chip">豆腐 <span class="r">tōfu</span> <span class="m">— bean curd</span></span><span class="lw-chip">饂飩 <span class="r">udon</span> <span class="m">— thick noodles</span></span></div></div></div>
-
-</div></section>
-
-<div class="sdiv"><svg viewBox="0 0 300 30"><path d="M0,15 C50,5 100,25 150,15 C200,5 250,25 300,15" stroke="var(--ochre)" fill="none" stroke-width="1.5"/><circle cx="150" cy="15" r="3" fill="var(--vermillion)"/></svg></div>
-
-<!-- ======================================================================== -->
-<!-- ERA 4: EARLY MODERN -->
-<!-- ======================================================================== -->
-<section class="era-section era-earlymodern" id="earlymodern">
-<div class="era-header"><div class="era-kanji">近世</div><h2>Early Modern Japan</h2><div class="era-dates">1603 – 1868 CE</div><div class="era-divider"></div></div>
-<div class="entry-grid">
-
-<div class="entry-card" data-topic="event" data-era="earlymodern" data-search="edo tokugawa shogunate 1603 sankin kotai alternate attendance social hierarchy four classes peace 250 years"><div class="entry-topic-label">Historical Event</div><div class="entry-date">1603 CE</div><div class="entry-title">Tokugawa Shogunate — 250 Years of Enforced Peace</div><div class="entry-text">Tokugawa Ieyasu establishes the Edo bakufu. The sankin-kōtai system forces daimyō to alternate residence between domains and Edo, ensuring loyalty and stimulating roads, commerce, and urbanization. Rigid class hierarchy (samurai, farmer, artisan, merchant) creates order. Edo (Tokyo) grows to over a million — the world's largest city by 1720.</div><div class="entry-tags"><span class="etag">Edo</span><span class="etag">Tokugawa</span><span class="etag">Sankin-kōtai</span></div></div>
-
-<div class="entry-card" data-topic="event" data-era="earlymodern" data-search="sakoku isolation shimabara rebellion 1637 1638 christianity eradication closed country 1639 dejima"><div class="entry-topic-label">Historical Event</div><div class="entry-date">1637 – 1639 CE</div><div class="entry-title">Shimabara Rebellion &amp; Sakoku — Japan Closes Its Doors</div><div class="entry-text">The Shimabara Rebellion — a desperate uprising of Christian peasants and rōnin — ends in the massacre of 37,000. Japan implements sakoku (closed country): Christianity is eradicated, virtually all foreigners are expelled, Japanese citizens are forbidden from leaving, and oceanic shipbuilding is banned. Only the Dutch (on Dejima) and Chinese retain limited trading rights.</div><div class="entry-tags"><span class="etag">Shimabara</span><span class="etag">Sakoku</span><span class="etag">Isolation</span></div></div>
-
-<div class="entry-card" data-topic="contact" data-era="earlymodern" data-search="netherlands dutch dejima nagasaki voc rangaku dutch studies medicine anatomy kaitai shinsho western science"><div class="entry-topic-label">Foreign Contact</div><div class="entry-date">1641 – 1853</div><div class="entry-title">The Netherlands — Japan's Window to the West</div><div class="entry-text">The Dutch East India Company (VOC) maintains a trading post on Dejima island — the sole European contact during sakoku. "Dutch studies" (rangaku) gives Japanese scholars access to Western medicine, anatomy, astronomy, botany, and military science. The anatomical translation Kaitai Shinsho (1774) revolutionizes Japanese medicine.</div><div class="cflag">🇳🇱 Netherlands (Dejima)</div><div class="entry-tags"><span class="etag">Rangaku</span><span class="etag">Medicine</span><span class="etag">VOC</span></div></div>
-
-<div class="entry-card" data-topic="loanword" data-era="earlymodern" data-search="dutch loanwords biru beer kohii coffee garasu glass gomu rubber randoseru school bag ponpu pump mesu scalpel dontaku holiday orugoru music box"><div class="entry-topic-label">Loanwords</div><div class="entry-date">17th – 19th Century</div><div class="entry-title">Dutch — The Language of Western Learning</div><div class="entry-text">For two centuries, Dutch was Japan's primary conduit for European knowledge. Many Dutch loanwords survive in modern Japanese.</div><div class="lw-block"><div class="lw-label">Dutch → Japanese</div><div class="lw-items"><span class="lw-chip">ビール <span class="r">bīru</span> <span class="m">— beer (bier)</span></span><span class="lw-chip">コーヒー <span class="r">kōhī</span> <span class="m">— coffee (koffie)</span></span><span class="lw-chip">ガラス <span class="r">garasu</span> <span class="m">— glass (glas)</span></span><span class="lw-chip">ゴム <span class="r">gomu</span> <span class="m">— rubber (gom)</span></span><span class="lw-chip">ランドセル <span class="r">randoseru</span> <span class="m">— school bag (ransel)</span></span><span class="lw-chip">メス <span class="r">mesu</span> <span class="m">— scalpel (mes)</span></span><span class="lw-chip">オルゴール <span class="r">orugōru</span> <span class="m">— music box (orgel)</span></span><span class="lw-chip">ドンタク <span class="r">dontaku</span> <span class="m">— holiday (zondag)</span></span></div></div></div>
-
-<div class="entry-card" data-topic="religion" data-era="earlymodern" data-search="danka system temple buddhism funeral soshiki mandatory registration surveillance"><div class="entry-topic-label">Religion</div><div class="entry-date">Edo Period</div><div class="entry-title">Danka Buddhism — Temple as State Tool</div><div class="entry-text">Every household must register at a Buddhist temple for surveillance and anti-Christian enforcement. While ensuring institutional power, this hollowed spiritual vitality. Funerary rites became Buddhism's primary social function — "funeral Buddhism" (sōshiki bukkyō). Buddhist clergy became bureaucrats rather than spiritual teachers.</div><div class="entry-tags"><span class="etag">Danka</span><span class="etag">Funeral Buddhism</span></div></div>
-
-<div class="entry-card" data-topic="religion" data-era="earlymodern" data-search="kakure kirishitan hidden christian crypto persecution secret faith icon disguised orashio prayer"><div class="entry-topic-label">Religion</div><div class="entry-date">1630s – 1870s</div><div class="entry-title">Kakure Kirishitan — Hidden Christians</div><div class="entry-text">Driven underground by persecution, crypto-Christians maintained faith for over 200 years without priests, disguising icons as Buddhist statues and transmitting prayers (orashio) orally. When missionaries returned after 1853, they discovered communities still practicing — one of history's most remarkable acts of religious endurance.</div><div class="entry-tags"><span class="etag">Hidden Christians</span><span class="etag">Persecution</span></div></div>
-
-<div class="entry-card" data-topic="religion" data-era="earlymodern" data-search="kokugaku national learning motoori norinaga hirata atsutane shinto purism kojiki emperor divine"><div class="entry-topic-label">Religion</div><div class="entry-date">18th Century</div><div class="entry-title">Kokugaku — National Learning Movement</div><div class="entry-text">Scholars like Motoori Norinaga seek to strip away Buddhist and Chinese "contamination" and recover pure ancient Shinto. They exalt the Kojiki, the emperor's divine nature, and Japan's unique spiritual identity. Kokugaku ideas would fuel the Meiji Restoration and construction of State Shinto.</div><div class="entry-tags"><span class="etag">Kokugaku</span><span class="etag">Norinaga</span></div></div>
-
-<div class="entry-card" data-topic="culture" data-era="earlymodern" data-search="ukiyo-e hokusai hiroshige kuniyoshi great wave kabuki basho haiku floating world yoshiwara woodblock print"><div class="entry-topic-label">Culture</div><div class="entry-date">17th – 19th Century</div><div class="entry-title">Ukiyo-e, Kabuki &amp; the Floating World</div><div class="entry-text">Edo culture flourishes: Hokusai's Great Wave and Hiroshige's landscapes transform world art; Kuniyoshi's warrior prints mythologize the past; kabuki theater electrifies audiences; Bashō perfects haiku; the pleasure quarters of Yoshiwara inspire literature, art, and music. Popular religion thrives through pilgrimage, Inari worship, and ghost story gatherings.</div><div class="entry-tags"><span class="etag">Hokusai</span><span class="etag">Kabuki</span><span class="etag">Haiku</span></div></div>
-
-<div class="entry-card" data-topic="mythology" data-era="earlymodern" data-search="kaidan ghost stories yotsuya hyakumonogatari shichi fukujin seven lucky gods yokai catalogue supernatural edo"><div class="entry-topic-label">Mythology</div><div class="entry-date">Edo Period</div><div class="entry-title">Ghost Stories, Yōkai Catalogues &amp; the Seven Lucky Gods</div><div class="entry-text">The Edo period codifies Japan's supernatural imagination. Yotsuya Kaidan and Ugetsu Monogatari weave Buddhist morality into tales of vengeful spirits. The hyakumonogatari kaidankai ("100 Supernatural Tales") becomes a parlor game. Artists catalogue yōkai systematically. The Shichi Fukujin (Seven Lucky Gods) — blending Shinto, Buddhist, Daoist, and Hindu deities — symbolize Japan's joyful syncretism.</div><div class="entry-tags"><span class="etag">Kaidan</span><span class="etag">Yōkai</span><span class="etag">Seven Gods</span></div></div>
-
-<div class="entry-card" data-topic="event" data-era="earlymodern" data-search="perry black ships 1853 united states commodore unequal treaties bakumatsu meiji restoration sonno joi"><div class="entry-topic-label">Historical Event</div><div class="entry-date">1853 – 1868 CE</div><div class="entry-title">Perry's Black Ships &amp; the Fall of the Shogunate</div><div class="entry-text">Commodore Matthew Perry arrives in Edo Bay with steam-powered warships (1853), shattering sakoku. The resulting "unequal treaties" with America, Britain, France, Russia, and the Netherlands humiliate Japan and trigger the sonnō jōi ("revere emperor, expel barbarians") crisis. The Tokugawa shogunate collapses. The Meiji Restoration of 1868 ends 265 years of warrior rule.</div><div class="cflag">🇺🇸 United States &amp; 🇬🇧🇫🇷🇷🇺 European Powers</div><div class="entry-tags"><span class="etag">Perry</span><span class="etag">Bakumatsu</span><span class="etag">Meiji Restoration</span></div></div>
-
-<div class="entry-card" data-topic="cult" data-era="earlymodern" data-search="kurozumikyo 1814 tenrikyo 1838 nakayama miki new religion revelation healing precursor"><div class="entry-topic-label">New Religion</div><div class="entry-date">1814 – 1838</div><div class="entry-title">Kurozumikyō &amp; Tenrikyō — First New Religions</div><div class="entry-text">As Edo social order frays, charismatic founders launch new movements outside established temples. Kurozumikyō (1814): solar-worship Shinto revelation. Tenrikyō (1838): Nakayama Miki's revelatory experience of God the Parent (Tenri-Ō-no-Mikoto) promising the "joyous life" for all. These precursors foreshadow the explosion of new religions in the modern era.</div><div class="entry-tags"><span class="etag">Kurozumikyō</span><span class="etag">Tenrikyō</span></div></div>
-
-</div></section>
-
-<div class="sdiv"><svg viewBox="0 0 300 30"><path d="M0,15 C50,5 100,25 150,15 C200,5 250,25 300,15" stroke="var(--ochre)" fill="none" stroke-width="1.5"/><circle cx="150" cy="15" r="3" fill="var(--vermillion)"/></svg></div>
-
-<!-- ======================================================================== -->
-<!-- ERA 5: MODERN -->
-<!-- ======================================================================== -->
-<section class="era-section era-modern" id="modern">
-<div class="era-header"><div class="era-kanji">現代日本</div><h2>Modern Japan</h2><div class="era-dates">1868 CE – Present</div><div class="era-divider"></div></div>
-<div class="entry-grid">
-
-<div class="entry-card" data-topic="event" data-era="modern" data-search="meiji restoration 1868 emperor modernization iwakura mission industrialization constitution 1889 sino japanese war 1895 russo japanese war 1905"><div class="entry-topic-label">Historical Event</div><div class="entry-date">1868 – 1912 CE</div><div class="entry-title">Meiji Restoration — From Feudalism to World Power</div><div class="entry-text">Imperial rule restored. Japan modernizes at astonishing speed: railways, telegraph, conscript army, public education, Meiji Constitution (1889). Victory in the Sino-Japanese War (1895) gains Taiwan; victory over Russia (1905) — the first modern Asian defeat of a European power — shocks the world and inspires anti-colonial movements across Asia. Japan annexes Korea in 1910.</div><div class="entry-tags"><span class="etag">Meiji</span><span class="etag">Modernization</span><span class="etag">Russo-Japanese War</span></div></div>
-
-<div class="entry-card" data-topic="religion" data-era="modern" data-search="state shinto shinbutsu bunri separation haibutsu kishaku abolish buddhism emperor worship yasukuni shrine imperial cult"><div class="entry-topic-label">Religion</div><div class="entry-date">1868 – 1945</div><div class="entry-title">State Shinto — Religion as National Ideology</div><div class="entry-text">The Meiji government decrees shinbutsu bunri — forced separation of Shinto and Buddhism after a millennium of fusion. The haibutsu kishaku ("abolish Buddhism") movement destroys thousands of temples. State Shinto is constructed centering on emperor worship, divine origins, and Yasukuni Shrine. Officially "not a religion" but mandatory civic observance.</div><div class="entry-tags"><span class="etag">State Shinto</span><span class="etag">Haibutsu Kishaku</span></div></div>
-
-<div class="entry-card" data-topic="contact" data-era="modern" data-search="britain germany france united states meiji westernization iwakura mission prussia military medicine law navy education baseball oyatoi gaikokujin"><div class="entry-topic-label">Foreign Contact</div><div class="entry-date">1868 – 1912</div><div class="entry-title">Western Powers — Wholesale Modernization</div><div class="entry-text">The Iwakura Mission (1871–73) studies Western nations. Japan adopts Prussian military structure and constitution, British naval tradition, French civil law, American agricultural methods, and German medical science. Thousands of foreign advisors (oyatoi gaikokujin) are hired. Christianity is re-legalized in 1873.</div><div class="cflag">🇬🇧 Britain · 🇩🇪 Germany · 🇫🇷 France · 🇺🇸 United States</div><div class="entry-tags"><span class="etag">Iwakura Mission</span><span class="etag">Modernization</span></div></div>
-
-<div class="entry-card" data-topic="loanword" data-era="modern" data-search="english german french loanwords arubaito arbeit karute karte zubon jupon anketo enquete dessan dessin station baseball"><div class="entry-topic-label">Loanwords</div><div class="entry-date">1868 – 1945</div><div class="entry-title">English, German &amp; French — Meiji Loanword Flood</div><div class="entry-text">Each Western nation donated specialized vocabulary reflecting their area of influence on Japan.</div><div class="lw-block"><div class="lw-label">Meiji-era European loanwords</div><div class="lw-items"><span class="lw-chip">アルバイト <span class="r">arubaito</span> <span class="m">— part-time (Arbeit, DE)</span></span><span class="lw-chip">カルテ <span class="r">karute</span> <span class="m">— medical chart (Karte, DE)</span></span><span class="lw-chip">リュックサック <span class="r">ryukkusakku</span> <span class="m">— backpack (DE)</span></span><span class="lw-chip">ズボン <span class="r">zubon</span> <span class="m">— trousers (jupon, FR)</span></span><span class="lw-chip">アンケート <span class="r">ankēto</span> <span class="m">— survey (enquête, FR)</span></span><span class="lw-chip">デッサン <span class="r">dessan</span> <span class="m">— sketch (dessin, FR)</span></span><span class="lw-chip">ベースボール <span class="r">bēsubōru</span> <span class="m">— baseball (EN)</span></span></div></div></div>
-
-<div class="entry-card" data-topic="event" data-era="modern" data-search="world war two wwii 1941 1945 pearl harbor hiroshima nagasaki atomic bomb surrender emperor kamikaze arahitogami imperial expansion asia"><div class="entry-topic-label">Historical Event</div><div class="entry-date">1941 – 1945 CE</div><div class="entry-title">World War II — Imperial Expansion and Atomic Devastation</div><div class="entry-text">Japan attacks Pearl Harbor (1941) and conquers much of Asia and the Pacific. State Shinto mythology reaches its zenith — the emperor is a living god (arahitogami), kamikaze pilots invoke divine wind. The war kills millions across Asia. Atomic bombings of Hiroshima and Nagasaki (August 1945) end the war and reshape the global order. Japan surrenders unconditionally on August 15, 1945.</div><div class="entry-tags"><span class="etag">WWII</span><span class="etag">Hiroshima</span><span class="etag">Surrender</span></div></div>
-
-<div class="entry-card" data-topic="event" data-era="modern" data-search="postwar occupation macarthur 1945 1952 humanity declaration hirohito constitution article 9 peace democracy economic miracle 1960s"><div class="entry-topic-label">Historical Event</div><div class="entry-date">1945 – 1970s CE</div><div class="entry-title">Postwar Rebirth — From Ashes to Economic Miracle</div><div class="entry-text">Emperor Hirohito's Humanity Declaration (1946) renounces divine status. The new constitution guarantees religious freedom, women's suffrage, and the renunciation of war (Article 9). American occupation reshapes institutions. Japan's "economic miracle" transforms the devastated nation into the world's second-largest economy by the 1960s, with innovations in electronics, automobiles, and manufacturing.</div><div class="entry-tags"><span class="etag">Occupation</span><span class="etag">Article 9</span><span class="etag">Economic Miracle</span></div></div>
-
-<div class="entry-card" data-topic="contact" data-era="modern" data-search="united states occupation macarthur american culture jazz film fashion democracy english language cold war alliance"><div class="entry-topic-label">Foreign Contact</div><div class="entry-date">1945 – Present</div><div class="entry-title">The United States — Occupation &amp; Enduring Alliance</div><div class="entry-text">The American occupation (1945–52) under MacArthur reshapes Japan's constitution, education, land reform, and popular culture. American jazz, film, fashion, democratic ideals, and consumer culture flood in. English becomes the dominant foreign language. The US-Japan security alliance anchors Cold War strategy. American cultural influence remains pervasive — from baseball to fast food to Hollywood.</div><div class="cflag">🇺🇸 United States</div><div class="entry-tags"><span class="etag">Occupation</span><span class="etag">Alliance</span></div></div>
-
-<div class="entry-card" data-topic="loanword" data-era="modern" data-search="postwar english loanwords terebi television sarariman salaryman depato department store pasokon computer sumaho smartphone konbini convenience anime kosupure wasei eigo"><div class="entry-topic-label">Loanwords</div><div class="entry-date">1945 – Present</div><div class="entry-title">English — The Dominant Modern Loanword Source</div><div class="entry-text">Postwar and digital-era Japanese absorbed thousands of English words, including uniquely Japanese coinages (wasei-eigo).</div><div class="lw-block"><div class="lw-label">English → Japanese (postwar & digital era)</div><div class="lw-items"><span class="lw-chip">テレビ <span class="r">terebi</span> <span class="m">— television</span></span><span class="lw-chip">サラリーマン <span class="r">sararīman</span> <span class="m">— salaried worker</span></span><span class="lw-chip">パソコン <span class="r">pasokon</span> <span class="m">— personal computer</span></span><span class="lw-chip">スマホ <span class="r">sumaho</span> <span class="m">— smartphone</span></span><span class="lw-chip">コンビニ <span class="r">konbini</span> <span class="m">— convenience store</span></span><span class="lw-chip">アニメ <span class="r">anime</span> <span class="m">— animation</span></span><span class="lw-chip">コスプレ <span class="r">kosupure</span> <span class="m">— costume play</span></span><span class="lw-chip">SNS <span class="r">esu-enu-esu</span> <span class="m">— social media</span></span></div></div></div>
-
-<div class="entry-card" data-topic="cult" data-era="modern" data-search="omoto-kyo deguchi nao 1892 millenarian suppression twice raided seicho no ie worldmate inspired"><div class="entry-topic-label">New Religion</div><div class="entry-date">1892</div><div class="entry-title">Ōmoto-kyō — The Mother of New Religions</div><div class="entry-text">Founded by Deguchi Nao. Shinto-derived millenarian movement prophesying world renewal. Profoundly influential — Ōmoto spawned or inspired Seicho-no-Ie, Worldmate, and others. Twice violently suppressed by the imperial state (1921, 1935) for challenging the emperor's spiritual monopoly.</div><div class="entry-tags"><span class="etag">Ōmoto-kyō</span><span class="etag">Suppressed</span></div></div>
-
-<div class="entry-card" data-topic="cult" data-era="modern" data-search="soka gakkai sgi nichiren buddhist lay organization shakubuku komeito party political power millions members 1930"><div class="entry-topic-label">New Religion</div><div class="entry-date">Founded 1930</div><div class="entry-title">Sōka Gakkai / SGI — Japan's Largest New Religion</div><div class="entry-text">Nichiren Buddhist lay organization. Founder Makiguchi died in prison for refusing State Shinto compliance. Under Toda and Ikeda, it grew explosively through aggressive proselytization (shakubuku) to millions of members. Founded the Kōmeitō political party. Emphasizes chanting for material and spiritual benefits. Now a global organization (SGI) with 12+ million members worldwide.</div><div class="entry-tags"><span class="etag">Sōka Gakkai</span><span class="etag">Kōmeitō</span></div></div>
-
-<div class="entry-card" data-topic="cult" data-era="modern" data-search="aum shinrikyo aleph asahara shoko sarin tokyo subway 1995 apocalyptic vajrayana shiva executed 2018"><div class="entry-topic-label">Cult</div><div class="entry-date">1984 – 1995</div><div class="entry-title">Aum Shinrikyō — Apocalyptic Terror</div><div class="entry-text">Founded by Asahara Shōkō. An apocalyptic cult blending Vajrayāna Buddhism, Hindu deities (Shiva), Christian eschatology, and science fiction. Committed the 1995 Tokyo subway sarin gas attack, killing 13 and injuring thousands. The attack traumatized Japan and stigmatized all new religious movements. Asahara executed in 2018. Remnants reorganized as Aleph and Hikari no Wa.</div><div class="entry-tags"><span class="etag">Aum</span><span class="etag">Sarin Attack</span><span class="etag">Terrorism</span></div></div>
-
-<div class="entry-card" data-topic="cult" data-era="modern" data-search="happy science kofuku no kagaku okawa ryuho el cantare 1986 channel buddha jesus media empire films"><div class="entry-topic-label">New Religion</div><div class="entry-date">Founded 1986</div><div class="entry-title">Kōfuku no Kagaku (Happy Science)</div><div class="entry-text">Founded by Ōkawa Ryūhō, who claimed to channel Buddha, Jesus, Muhammad, and others. Built a media empire of films, books, and schools. Teaches that Ōkawa is the supreme deity "El Cantare." Blends self-help, new age spirituality, and political conservatism. Ōkawa died in 2023; the movement's future is uncertain.</div><div class="entry-tags"><span class="etag">Happy Science</span><span class="etag">El Cantare</span></div></div>
-
-<div class="entry-card" data-topic="cult" data-era="modern" data-search="unification church sekai moonies korean sun myung moon abe shinzo assassination 2022 controversy political influence"><div class="entry-topic-label">Cult</div><div class="entry-date">Significant from 1960s</div><div class="entry-title">Unification Church — Korean-Origin Controversy</div><div class="entry-text">The Unification Church (Sekai Kirisutokyō Tōitsu Shinden Kyōkai) built a massive Japanese following through aggressive recruitment. The assassination of PM Abe Shinzō in 2022 — by a man whose mother was impoverished by the church — reignited national debate over cult influence in Japanese politics and led to dissolution proceedings.</div><div class="cflag">🇰🇷 South Korean origin</div><div class="entry-tags"><span class="etag">Unification Church</span><span class="etag">Abe Assassination</span></div></div>
-
-<div class="entry-card" data-topic="event" data-era="modern" data-search="2011 tohoku earthquake tsunami fukushima nuclear disaster march 11 great east japan"><div class="entry-topic-label">Historical Event</div><div class="entry-date">March 11, 2011</div><div class="entry-title">Tōhoku Earthquake, Tsunami &amp; Fukushima</div><div class="entry-text">A magnitude 9.0 earthquake — the most powerful in Japan's recorded history — triggers a devastating tsunami that kills nearly 20,000. The Fukushima Daiichi nuclear meltdown becomes the worst nuclear disaster since Chernobyl. The triple catastrophe reshapes Japan's energy policy, emergency preparedness, and national psyche.</div><div class="entry-tags"><span class="etag">3/11</span><span class="etag">Tsunami</span><span class="etag">Fukushima</span></div></div>
-
-<div class="entry-card" data-topic="mythology" data-era="modern" data-search="state mythology jimmu emperor divine postwar demythologization anime manga miyazaki spirited away mononoke okami naruto yokai pokemon matsuri festival"><div class="entry-topic-label">Mythology</div><div class="entry-date">1868 – Present</div><div class="entry-title">From State Myth to Anime — Mythology's Modern Life</div><div class="entry-text">Meiji government repackaged ancient myths as literal national history. Postwar, the emperor became human and myths became "just stories." Yet mythology found new life: Miyazaki's films reimagine Shinto animism; Amaterasu appears in Ōkami; yōkai fill Pokémon; Susanoo and Tsukuyomi populate Naruto. Matsuri festivals keep mythology alive in embodied practice across thousands of communities.</div><div class="entry-tags"><span class="etag">Anime</span><span class="etag">Miyazaki</span><span class="etag">Matsuri</span></div></div>
-
-<div class="entry-card" data-topic="culture" data-era="modern" data-search="global soft power anime manga j-pop sushi ramen kawaii nintendo sony toyota cultural export cool japan"><div class="entry-topic-label">Culture</div><div class="entry-date">1980s – Present</div><div class="entry-title">Global Soft Power — Japan's Cultural Export</div><div class="entry-text">Japanese culture flows outward: anime, manga, J-pop, video games (Nintendo, Sony), cuisine (sushi, ramen), fashion (Comme des Garçons, kawaii), and design influence the world. "Cool Japan" becomes a government strategy. Japan transitions from cultural importer to one of the world's most influential cultural exporters, while maintaining deep traditional roots.</div><div class="entry-tags"><span class="etag">Anime</span><span class="etag">Soft Power</span><span class="etag">Global</span></div></div>
-
-</div></section>
+<!-- TIMELINE — era sections and entry cards are rendered here from the data below -->
+<main id="timeline"></main>
+<noscript><p class="noscript">This timeline is built in the browser — please enable JavaScript to see its entries.</p></noscript>
+
+<!-- REFERENCE — figures, glossary and reading list are rendered from FIGURES, GLOSSARY and READING -->
+<section class="era-section ref-section" id="figures">
+<div class="era-header"><div class="era-kanji">人物</div><h2>Key Figures</h2><div class="era-dates">Select a name to find its entries</div><div class="era-divider"></div></div>
+<div class="figure-grid" id="figureGrid"></div>
+</section>
+
+<section class="era-section ref-section" id="glossary">
+<div class="era-header"><div class="era-kanji">用語集</div><h2>Glossary</h2><div class="era-dates">Terms that recur across the eras</div><div class="era-divider"></div></div>
+<dl class="glossary-list" id="glossaryList"></dl>
+</section>
+
+<section class="era-section ref-section" id="reading">
+<div class="era-header"><div class="era-kanji">参考文献</div><h2>Further Reading</h2><div class="era-dates">Where to check and deepen what is summarized here</div><div class="era-divider"></div></div>
+<div class="reading-list" id="readingList"></div>
+</section>
+
+<template id="eraTpl">
+<section class="era-section">
+<div class="era-header"><div class="era-kanji"></div><h2></h2><div class="era-dates"></div><div class="era-divider"></div></div>
+<div class="entry-grid"></div>
+</section>
+</template>
+
+<template id="dividerTpl">
+<div class="sdiv" aria-hidden="true"><svg viewBox="0 0 300 30"><path d="M0,15 C50,5 100,25 150,15 C200,5 250,25 300,15" stroke="var(--ochre)" fill="none" stroke-width="1.5"/><circle cx="150" cy="15" r="3" fill="var(--vermillion)"/></svg></div>
+</template>
+
+<template id="entryTpl">
+<article class="entry-card"><div class="entry-topic-label"></div><div class="entry-date"></div><h3 class="entry-title"></h3><p class="entry-text"></p><div class="cflag"></div><div class="lw-block"><div class="lw-label"></div><div class="lw-items"></div></div><div class="entry-tags"></div></article>
+</template>
 
 <!-- FOOTER -->
 <div class="footer">
@@ -430,165 +320,1452 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 <p>日本の歴史 — In the style of the Great Wave</p>
 </div>
 
-<button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+<button type="button" class="scroll-top" id="scrollTop" aria-label="Back to top">↑</button>
 
-<!-- ===== SCRIPT ===== -->
+<!-- ===== DATA ===== -->
 <script>
-const allCards = document.querySelectorAll('.entry-card');
-const eraSections = document.querySelectorAll('.era-section');
-const dividers = document.querySelectorAll('.sdiv');
-const searchInput = document.getElementById('searchInput');
-const searchCount = document.getElementById('searchCount');
-const clearBtn = document.getElementById('clearBtn');
-const noResults = document.getElementById('noResults');
-const navLinks = document.querySelectorAll('.era-nav a');
+const ERAS = [
+  { id: "prehistoric", nav: "Prehistoric & Ancient", title: "Prehistoric & Ancient Japan", kanji: "先史〜飛鳥", dates: "c. 14,000 BCE – 710 CE" },
+  { id: "classical", nav: "Classical", title: "Classical Japan", kanji: "奈良・平安", dates: "710 – 1185 CE" },
+  { id: "feudal", nav: "Feudal", title: "Feudal Japan", kanji: "中世", dates: "1185 – 1603 CE" },
+  { id: "earlymodern", nav: "Early Modern", title: "Early Modern Japan", kanji: "近世", dates: "1603 – 1868 CE" },
+  { id: "modern", nav: "Modern", title: "Modern Japan", kanji: "近現代", dates: "1868 CE – Present" },
+];
+
+// `label` is the default heading on a card of that topic; `name` is the filter button.
+// Colours live in the CSS under "Topic colors".
+const TOPICS = [
+  { id: "event", icon: "⚡", name: "Historical Events", label: "Historical Event" },
+  { id: "religion", icon: "⛩️", name: "Religions & Sects", label: "Religion" },
+  { id: "mythology", icon: "🐉", name: "Mythology", label: "Mythology" },
+  { id: "contact", icon: "🌐", name: "Foreign Contact", label: "Foreign Contact" },
+  { id: "empire", icon: "🗺️", name: "Empire & Colonialism", label: "Empire" },
+  { id: "peoples", icon: "🧭", name: "Ainu & Ryukyu", label: "Ainu & Ryukyu" },
+  { id: "loanword", icon: "🗣️", name: "Loanwords", label: "Loanwords" },
+  { id: "language", icon: "✍️", name: "Language & Writing", label: "Language" },
+  { id: "culture", icon: "🎭", name: "Culture & Arts", label: "Culture" },
+  { id: "science", icon: "🔬", name: "Science & Technology", label: "Science" },
+  { id: "women", icon: "♀️", name: "Women", label: "Women's History" },
+  { id: "cult", icon: "🔮", name: "Cults & New Religions", label: "New Religion" },
+];
+
+// One object per card, shown in this order within its era.
+//   era, topic   ids from ERAS / TOPICS                              (required)
+//   date, title, text                                               (required)
+//   flag         country line shown under the text
+//   label        replaces the topic's default card heading
+//   loanwords    { label, items: [[japanese, romaji, meaning], ...] }
+//   tags         short labels shown at the bottom of the card
+//   keywords     extra search terms that are not in the visible text
+//                (plain-ASCII spellings, synonyms, related names)
+const ENTRIES = [
+
+  // ───── Prehistoric & Ancient Japan ─────
+  {
+    era: "prehistoric", topic: "event",
+    date: "c. 14,000 – 300 BCE",
+    title: "Jōmon Period — One of the World's Oldest Pottery Cultures",
+    text: "Hunter-gatherers produce some of the world's oldest known pottery — later famed for its cord-marked (jōmon) decoration — establishing a remarkably stable culture lasting over 10,000 years across the archipelago. Complex villages, pit dwellings, and elaborate burial practices develop without full-scale farming.",
+    tags: ["Prehistoric", "Pottery"],
+    keywords: "jomon period pottery oldest world hunter gatherer 14000 bce prehistoric",
+  },
+  {
+    era: "prehistoric", topic: "religion",
+    date: "c. 14,000 – 300 BCE",
+    title: "Jōmon Animism & Shamanism",
+    text: "Jōmon belief left no written record and must be inferred from archaeology. Ritual objects and burials suggest a spiritual life centred on nature and the cycle of life and death, often described as animist. Dogū clay figurines with exaggerated features — many deliberately broken — may have served fertility or healing rites, though their purpose remains uncertain.",
+    tags: ["Animism", "Shamanism", "Dogū"],
+    keywords: "animism shamanism dogu clay figurines nature spirits jomon tama soul",
+  },
+  {
+    era: "prehistoric", topic: "event",
+    date: "c. 300 BCE – 300 CE",
+    title: "Yayoi Revolution — Rice Agriculture Transforms Japan",
+    text: "Wet-rice cultivation arrives from continental Asia — conventionally dated from c. 300 BCE, though radiocarbon dating now suggests it reached northern Kyushu centuries earlier — triggering population growth, social stratification, and the first organized warfare. Bronze bells (dōtaku) and iron tools transform material culture. Distinct political entities — including Yamatai under the shamanic queen Himiko — emerge.",
+    tags: ["Agriculture", "Himiko"],
+    keywords: "yayoi period rice agriculture wet rice 300 bce bronze iron migration continental asia",
+  },
+  {
+    era: "prehistoric", topic: "contact",
+    date: "c. 300 BCE – 538 CE",
+    title: "China & Korea — First Contact & Cultural Transmission",
+    text: "Chinese histories (Wei Zhi) record Himiko's envoys to the Cao Wei court in 238 or 239 CE. Korean kingdoms — Baekje, Goguryeo, Silla — transmit Chinese writing (kanji), Confucian ethics, Buddhist sutras, bronze-casting, iron-working, and silk-weaving to Japan. Tradition credits the Baekje scholar Wani with bringing the Analects of Confucius.",
+    flag: "🇨🇳 China & 🇰🇷 Korean Peninsula",
+    tags: ["Diplomacy", "Writing", "Buddhism"],
+    keywords: "china korea baekje goguryeo silla himiko yamatai wei zhi envoy 238 ce writing kanji confucianism continental",
+  },
+  {
+    era: "prehistoric", topic: "religion",
+    date: "c. 300 BCE – 538 CE",
+    title: "Proto-Shinto — Kami Worship Crystallizes",
+    text: "Animism evolves into structured veneration of kami — sacred spirits of nature, ancestors, and creation forces. Agricultural rites, ritual purification (harae), temporary sacred enclosures (himorogi), and shrine spaces define emerging practice. No scriptures, no founder — kami worship grows organically from the land, though Shinto as a distinct, named religion takes shape only much later.",
+    tags: ["Kami", "Shinto Origins"],
+    keywords: "proto-shinto kami worship agriculture purification harae himorogi sacred space",
+  },
+  {
+    era: "prehistoric", topic: "mythology",
+    date: "Age of Gods",
+    title: "Kuniumi — The Birth of the Islands",
+    text: "The divine couple Izanagi and Izanami stir the primordial ocean with a jeweled spear. Drops form Onogoroshima, the first island. They birth the Japanese archipelago and kami of wind, sea, and fire. When Izanami dies giving birth to the fire god, Izanagi descends to Yomi (the underworld) — origin of death and pollution.",
+    tags: ["Creation", "Izanagi", "Izanami"],
+    keywords: "izanagi izanami kuniumi creation islands amaterasu susanoo onogoroshima spear",
+  },
+  {
+    era: "prehistoric", topic: "mythology",
+    date: "Age of Gods",
+    title: "Amaterasu, the Imperial Regalia & Divine Descent",
+    text: "The sun goddess Amaterasu retreats into a cave, plunging the world into darkness. The kami lure her out with a sacred mirror and Ame-no-Uzume's ecstatic dance — origin of kagura. Susanoo slays Yamata no Orochi, discovering the sword Kusanagi. Amaterasu sends her grandson Ninigi to earth with the mirror, sword, and jewel. His descendant Jimmu becomes the first Emperor.",
+    tags: ["Amaterasu", "Susanoo", "Imperial Line"],
+    keywords: "amaterasu cave susanoo ame no uzume kagura mirror sun goddess tenson korin ninigi jimmu emperor imperial regalia",
+  },
+  {
+    era: "prehistoric", topic: "event",
+    date: "c. 250 – 538 CE",
+    title: "Kofun Period — Rise of the Yamato Imperial State",
+    text: "Massive keyhole-shaped burial mounds (kofun) signal the rise of the Yamato clan. The largest — the Daisen Kofun, traditionally attributed to Emperor Nintoku — covers more ground than the Great Pyramid. Haniwa clay figures guard the dead. The Yamato court consolidates control over much of Honshu, forging Japan's first proto-state; its rulers would later claim divine descent from Amaterasu.",
+    tags: ["Yamato", "Kofun Tombs"],
+    keywords: "kofun tomb keyhole yamato clan imperial unification 250 538 haniwa",
+  },
+  {
+    era: "prehistoric", topic: "event",
+    date: "538 – 710 CE",
+    title: "Buddhism's Arrival & the Taika Reforms",
+    text: "Buddhism officially enters from Baekje (538/552), sparking the Soga-Mononobe clan conflict. Prince Shōtoku champions Buddhism and is credited by the Nihon Shoki with the Seventeen-Article Constitution (604), though its authorship is debated. The Taika Reforms, begun in 645, start centralizing government on the Chinese model — land nationalization, tax reform, provincial administration — a process completed only with the Taihō Code of 701. Japan gradually transforms from a clan confederation into a Chinese-style centralized state.",
+    tags: ["Buddhism", "Taika Reforms", "Shōtoku"],
+    keywords: "asuka buddhism introduction 538 552 prince shotoku seventeen article constitution horyuji taika reforms 645 centralization",
+  },
+  {
+    era: "prehistoric", topic: "women",
+    date: "c. 240 – 770 CE",
+    title: "Himiko & the Female Emperors",
+    text: "The earliest ruler of Japan described in any detail is a woman: Himiko, shaman-queen of Yamatai, recorded in Chinese chronicles and dead by about 248 CE. Between 592 and 770, six women reign as emperor across eight reigns — among them Suiko, under whom Prince Shōtoku's reforms take place, and Jitō, who issues the Asuka Kiyomihara law code and builds the first planned capital at Fujiwara-kyō (694). After Shōtoku, whose favor toward the monk Dōkyō causes scandal, no woman reigns for more than 850 years, and only two have since.",
+    tags: ["Himiko", "Suiko", "Jitō"],
+    keywords: "himiko yamatai queen empress suiko jito kogyoku saimei genmei gensho koken shotoku dokyo female emperor josei tenno women prince shotoku",
+  },
+  {
+    era: "prehistoric", topic: "loanword",
+    date: "5th – 8th Century",
+    title: "Chinese Language — The Foundation of Written Japanese",
+    text: "The adoption of Chinese characters (kanji) and Sino-Japanese on'yomi readings constitutes the most massive linguistic borrowing in Japanese history. Thousands of Chinese-origin compounds form the backbone of Japanese vocabulary for governance, philosophy, religion, and scholarship.",
+    loanwords: {
+      label: "Chinese-origin vocabulary",
+      items: [
+        ["漢字", "kanji", "characters"],
+        ["天皇", "tennō", "emperor"],
+        ["仏", "butsu", "Buddha"],
+        ["律令", "ritsuryō", "legal codes"],
+        ["経", "kyō", "sutra"],
+        ["文字", "moji", "writing"],
+      ],
+    },
+    keywords: "kanji chinese characters onyomi writing system sino japanese butsu hotoke temple tera ji kyo kyoo sutra moji writing ritsuryoo",
+  },
+  {
+    era: "prehistoric", topic: "religion",
+    date: "5th – 7th Century",
+    title: "Confucianism & Daoism Enter Japan",
+    text: "Arriving alongside Buddhism as ethical and cosmological frameworks from China. Confucian hierarchy — ruler-subject, parent-child — shaped governance and social order. Chinese cosmology — yin-yang, the five phases, and directional lore, mixed with Daoist elements — became embedded in onmyōdō court divination.",
+    tags: ["Confucianism", "Daoism", "Onmyōdō"],
+    keywords: "confucianism daoism yin yang onmyodo five elements chinese ethics hierarchy mandate",
+  },
+
+  // ───── Classical Japan ─────
+  {
+    era: "classical", topic: "event",
+    date: "710 – 794 CE",
+    title: "Nara — Japan's First Permanent Capital",
+    text: "Modeled on Tang Chang'an, Nara becomes the seat of imperial power. The great Tōdai-ji temple and its colossal bronze Buddha symbolize state-Buddhist fusion. The Kojiki (712) and Nihon Shoki (720) codify mythology and imperial genealogy. Monks gain dangerous political influence — one reason the court abandons Nara in 784, first for Nagaoka-kyō, then for Kyoto.",
+    tags: ["Nara", "Tōdai-ji", "Kojiki"],
+    keywords: "nara period 710 capital todaiji great buddha kojiki nihon shoki tang china model",
+  },
+  {
+    era: "classical", topic: "language",
+    date: "5th – 8th Century",
+    title: "Man'yōgana — Writing Japanese in Chinese Characters",
+    text: "Japanese has no script of its own, so scribes bend Chinese characters to fit it — using them for their sound rather than their meaning. The Inariyama sword inscription (probably 471) already spells Japanese names this way. The method peaks in the Man'yōshū (compiled after 759), an anthology of some 4,500 poems by emperors, courtiers, frontier guards, and anonymous commoners, and takes its name from it: man'yōgana.",
+    tags: ["Man'yōshū", "Man'yōgana"],
+    keywords: "manyogana manyoshu inariyama sword inscription phonetic kanji poetry anthology sakimori writing script",
+  },
+  {
+    era: "classical", topic: "peoples",
+    date: "8th – 9th Century",
+    title: "Emishi — The Court's Northern Wars",
+    text: "Northern Honshū lies outside the court's control, home to peoples it calls Emishi (how they relate to the later Ainu is debated). Decades of campaigns push the frontier north; the title sei-i taishōgun — \"barbarian-subduing generalissimo\", the origin of \"shōgun\" — is created for these wars. The Emishi leader Aterui routs an imperial army in 789 before surrendering to Sakanoue no Tamuramaro in 802. Further north, Hokkaido follows its own path under the Satsumon and Okhotsk cultures, never ruled by the court.",
+    label: "Northern Frontier",
+    tags: ["Emishi", "Aterui", "Shōgun"],
+    keywords: "emishi aterui sakanoue no tamuramaro sei-i taishogun shogun tohoku frontier satsumon okhotsk hokkaido north",
+  },
+  {
+    era: "classical", topic: "event",
+    date: "794 – 1185 CE",
+    title: "Heian Period — The Golden Age of Court Culture",
+    text: "The capital moves to Heian-kyō (Kyoto). The Fujiwara clan dominates through regency. This era produces The Tale of Genji (often called the world's first novel, by Murasaki Shikibu), The Pillow Book, and an exquisitely refined aristocratic culture. Kana syllabaries develop, enabling Japanese literary expression independent of Chinese. The court's elegance masks growing provincial instability.",
+    tags: ["Kyoto", "Fujiwara", "Genji", "Kana"],
+    keywords: "heian period 794 kyoto fujiwara regency tale of genji murasaki shikibu pillow book sei shonagon golden age court aristocracy",
+  },
+  {
+    era: "classical", topic: "language",
+    date: "9th – 10th Century",
+    title: "Kana — A Script of Japan's Own",
+    text: "Two syllabaries grow out of man'yōgana. Hiragana comes from cursive, flowing forms of whole characters and is nicknamed onnade, \"the woman's hand\", for its use by court women; katakana comes from fragments of characters that monks jot beside Chinese texts as reading aids. The Kokinshū poetry anthology (c. 905) opens with a preface in kana, and its editor Ki no Tsurayuki writes the Tosa Diary (c. 935) in a woman's voice in order to use it.",
+    tags: ["Hiragana", "Katakana", "Kokinshū"],
+    keywords: "kana hiragana katakana onnade syllabary kokinshu kokin wakashu ki no tsurayuki tosa nikki diary script writing",
+  },
+  {
+    era: "classical", topic: "women",
+    date: "10th – 11th Century",
+    title: "Women Write the Classics",
+    text: "Men at court write officially in Chinese; women, writing in kana, produce the era's lasting literature. Murasaki Shikibu's Tale of Genji, Sei Shōnagon's Pillow Book, the Kagerō Diary by the woman known only as Michitsuna's Mother, and Izumi Shikibu's poetry all come from ladies-in-waiting and aristocratic wives. Heian noblewomen can inherit and own property in their own right, and a husband commonly visits or moves into his wife's household.",
+    tags: ["Murasaki", "Sei Shōnagon", "Kana"],
+    keywords: "murasaki shikibu sei shonagon izumi shikibu kagero nikki michitsuna mother ladies in waiting heian women literature inheritance marriage",
+  },
+  {
+    era: "classical", topic: "religion",
+    date: "710 – 794 CE",
+    title: "Nara Six Schools (Nanto Rokushū)",
+    text: "Hossō (Yogācāra consciousness-only), Sanron (Mādhyamaka emptiness), Kegon (Huayan interdependence), Ritsu (monastic discipline), Kusha, and Jōjitsu — primarily scholastic traditions focused on philosophy over popular devotion, centered at the great Nara temples.",
+    tags: ["Hossō", "Kegon", "Ritsu"],
+    keywords: "nara six schools nanto rokushu hossoo yogacara sanron madhyamaka kegon huayan ritsu kusha jojitsu",
+  },
+  {
+    era: "classical", topic: "religion",
+    date: "816 CE",
+    title: "Shingon-shū — Kūkai's Esoteric Buddhism",
+    text: "Founded by Kūkai (Kōbō Daishi) on Mount Kōya. Esoteric (mikkyō) Buddhism centered on mantra, mandala, and mudra. All phenomena manifest the cosmic Buddha Dainichi Nyorai. Buddhahood achievable in this very body (sokushin jōbutsu). Legend also credits Kūkai with inventing the kana syllabary, and he founded one of Japan's first schools open to commoners.",
+    tags: ["Shingon", "Esoteric", "Kūkai"],
+    keywords: "shingon kukai kobo daishi esoteric mikkyo mantra mandala mudra dainichi nyorai mount koya vajrayana tantric",
+  },
+  {
+    era: "classical", topic: "religion",
+    date: "805 CE",
+    title: "Tendai-shū — The Mother School",
+    text: "Founded by Saichō on Mount Hiei. Synthesized Lotus Sutra doctrine, esoteric ritual, meditation, and monastic precepts into a comprehensive path, to which Pure Land chanting was soon added. Became the \"mother school\" from which virtually all later Kamakura-era sects — Pure Land, Zen, Nichiren — would emerge.",
+    tags: ["Tendai", "Saichō", "Lotus Sutra"],
+    keywords: "tendai saicho mount hiei lotus sutra zen pure land mother school enryakuji",
+  },
+  {
+    era: "classical", topic: "religion",
+    date: "Heian Era",
+    title: "Shinbutsu-shūgō — Kami-Buddha Fusion",
+    text: "The dominant religious paradigm for a millennium: Shinto kami reinterpreted as manifestations of Buddhas and bodhisattvas (honji suijaku theory). Amaterasu identified with Dainichi Nyorai. Shrine-temples (jingū-ji) housed both traditions under one roof.",
+    tags: ["Syncretism", "Honji Suijaku"],
+    keywords: "shinbutsu shugo honji suijaku kami buddha fusion synthesis shrine temple jinguji",
+  },
+  {
+    era: "classical", topic: "contact",
+    date: "7th – 9th Century",
+    title: "Tang China & India (Indirect) — Esoteric Transmission",
+    text: "Kūkai and Saichō travel to Tang China and return with transformative teachings. Shingon's rituals trace to Indian Vajrayāna masters who transmitted to China. Sanskrit (Siddhaṃ script) became a sacred liturgical language still used in Shingon ritual. A mission planned for 894 is cancelled as the Tang dynasty collapses, and official embassies are never resumed.",
+    flag: "🇨🇳 Tang China & 🇮🇳 India (indirect)",
+    tags: ["Kentōshi", "Sanskrit"],
+    keywords: "tang china embassy kentooshi saicho kukai chang'an india sanskrit vajrayana tantric siddham liturgical",
+  },
+  {
+    era: "classical", topic: "loanword",
+    date: "8th – 12th Century",
+    title: "Sanskrit-Origin Words via Buddhist Transmission",
+    text: "Buddhist vocabulary from Sanskrit entered Japanese through Chinese translation, embedding deeply in everyday language far beyond religious context.",
+    loanwords: {
+      label: "Sanskrit → Chinese → Japanese",
+      items: [
+        ["南無", "namu", "namas (devotion)"],
+        ["卒塔婆", "sotoba", "stūpa"],
+        ["旦那", "danna", "dāna (generosity/patron)"],
+        ["刹那", "setsuna", "kṣaṇa (instant)"],
+        ["曼荼羅", "mandara", "maṇḍala"],
+        ["瓦", "kawara", "possibly kapāla (tile)"],
+      ],
+    },
+    keywords: "sanskrit namu namas devotion sotoba stupa danna dana setsuna ksana mandara mandala kawara kapala",
+  },
+  {
+    era: "classical", topic: "mythology",
+    date: "Heian Era",
+    title: "Mappō, Onryō & the Expanding Supernatural World",
+    text: "The world enters the \"Latter Day of the Law\" (mappō) — Buddhist practice degenerates and enlightenment becomes all but unattainable. Vengeful spirits (onryō) terrorize the court: Sugawara no Michizane is deified as Tenjin after plague, a lightning strike on the palace, and sudden deaths at court follow his death in exile. Kitsune (foxes), tengu, and the hyakki yagyō (night parade of demons) populate Heian folklore.",
+    tags: ["Mappō", "Onryō", "Tenjin"],
+    keywords: "kojiki nihon shoki kami bodhisattva mappo latter day law eschatology pure land amida yokai onryo sugawara michizane tenjin kitsune hyakki yagyo",
+  },
+  {
+    era: "classical", topic: "culture",
+    date: "Heian Era",
+    title: "Onmyōdō — Court Divination & Cosmic Order",
+    text: "Court-sanctioned system blending Chinese cosmology with native belief. Abe no Seimei, the legendary onmyōji, exemplified its prestige — casting horoscopes, banishing demons, and advising emperors. Directional taboos, lucky days, and ritual purification governed aristocratic life.",
+    tags: ["Onmyōdō", "Abe no Seimei"],
+    keywords: "onmyodo abe no seimei divination yin yang court ritual astronomy calendar",
+  },
+  {
+    era: "classical", topic: "event",
+    date: "1180 – 1185 CE",
+    title: "Genpei War — Rise of the Warrior Class",
+    text: "The cataclysmic Genpei War between the Taira and Minamoto clans ends Heian court supremacy. The naval battle of Dan-no-ura (1185) — where the child emperor drowns with the imperial sword — becomes one of Japan's defining mythic-historical moments. Minamoto no Yoritomo founds the Kamakura shogunate, inaugurating seven centuries of warrior rule.",
+    tags: ["Genpei", "Samurai", "Dan-no-ura"],
+    keywords: "genpei war 1180 1185 minamoto taira dan no ura samurai rise warrior class",
+  },
+
+  // ───── Feudal Japan ─────
+  {
+    era: "feudal", topic: "event",
+    date: "1185 – 1333 CE",
+    title: "Kamakura Shogunate — Japan's First Military Government",
+    text: "Minamoto no Yoritomo establishes the bakufu in Kamakura, creating a dual government with the imperial court in Kyoto. The Hōjō clan rules as regents after Yoritomo's death. Warrior values — loyalty, discipline, frugality — replace courtly elegance as cultural ideals.",
+    tags: ["Bakufu", "Samurai"],
+    keywords: "kamakura shogunate bakufu minamoto yoritomo 1185 first military government samurai hojo regents",
+  },
+  {
+    era: "feudal", topic: "women",
+    date: "1199 – 1225",
+    title: "Hōjō Masako — The Nun Shogun",
+    text: "After Minamoto no Yoritomo dies in 1199, his widow Hōjō Masako takes Buddhist vows yet steers the shogunate for a quarter-century, earning the name ama shōgun — \"nun shogun\". In 1221, when Retired Emperor Go-Toba rises against Kamakura in the Jōkyū War, her address to the wavering vassals holds them together. Kamakura law lets women inherit land and even hold estate stewardships (jitō); those rights narrow over the following centuries as estates pass undivided to a single male heir.",
+    tags: ["Hōjō Masako", "Jōkyū War"],
+    keywords: "hojo masako ama shogun nun shogun jokyu war 1221 go-toba women inheritance jito kamakura",
+  },
+  {
+    era: "feudal", topic: "event",
+    date: "1274 & 1281 CE",
+    title: "Mongol Invasions — Divine Wind Saves Japan",
+    text: "Kublai Khan launches two invasions; the second, in 1281, is often called the largest seaborne invasion attempted before D-Day. Japanese samurai resist at Hakata Bay. A typhoon wrecks the 1281 fleet — the \"kamikaze\" (divine wind) — though whether a storm also ended the 1274 attack is disputed. The cost of defence strains the Kamakura government, while victory cements Japan's belief in divine protection.",
+    flag: "🇲🇳 Mongol Empire (Yuan Dynasty)",
+    tags: ["Mongol Invasion", "Kamikaze"],
+    keywords: "mongol invasion 1274 1281 kublai khan kamikaze divine wind hakata typhoon",
+  },
+  {
+    era: "feudal", topic: "religion",
+    date: "1175 – 1260s",
+    title: "Pure Land Revolution — Buddhism for Everyone",
+    text: "Hōnen founds Jōdo-shū (1175): salvation through exclusive nembutsu — \"Namu Amida Butsu.\" His disciple Shinran radicalizes further with Jōdo Shinshū: salvation comes through faith alone, itself Amida's gift; monks may marry. This evolves into the powerful Hongan-ji institution and the militant Ikkō-ikki peasant-warrior leagues that control entire provinces.",
+    tags: ["Jōdo-shū", "Jōdo Shinshū", "Ikkō-ikki"],
+    keywords: "pure land jodo shu honen jodo shinshu shinran nembutsu amida ikko ikki peasant warrior honganji",
+  },
+  {
+    era: "feudal", topic: "religion",
+    date: "1191 – 1253",
+    title: "Zen Buddhism — Rinzai & Sōtō",
+    text: "Eisai introduces Rinzai Zen from Song China (1191): enlightenment through kōan riddles and sudden insight, patronized by samurai. Dōgen founds Sōtō Zen (1227): shikantaza — objectless sitting — where practice itself is enlightenment. Zen reshapes Japanese aesthetics, martial culture, and the tea ceremony.",
+    tags: ["Rinzai", "Sōtō", "Kōan"],
+    keywords: "zen rinzai eisai soto dogen koan shikantaza samurai meditation tea ceremony song china",
+  },
+  {
+    era: "feudal", topic: "religion",
+    date: "1253",
+    title: "Nichiren-shū — The Lotus Sutra Alone",
+    text: "The prophet-monk Nichiren declares only the Lotus Sutra contains true dharma. Chanting \"Namu Myōhō Renge Kyō\" is the sole valid practice. Fiercely exclusivist, he condemns all other schools and predicts national disaster if Japan doesn't convert. Repeatedly exiled and nearly executed, his movement grows into one of Japan's most influential religious traditions.",
+    tags: ["Nichiren", "Lotus Sutra"],
+    keywords: "nichiren lotus sutra namu myoho renge kyo exclusivist prophet fiery prophecy national disaster",
+  },
+  {
+    era: "feudal", topic: "event",
+    date: "1333 – 1392",
+    title: "Kenmu Restoration & the Two Courts",
+    text: "Emperor Go-Daigo overthrows the Kamakura shogunate in 1333 and tries to rule directly — the Kenmu Restoration. It lasts three years. His general Ashikaga Takauji turns on him, takes Kyoto in 1336, and enthrones a rival emperor; Go-Daigo flees south to the mountains of Yoshino. For nearly sixty years Japan has two imperial courts, Northern and Southern (Nanboku-chō), until the third Ashikaga shogun, Yoshimitsu, brokers reunification in 1392.",
+    tags: ["Go-Daigo", "Nanboku-chō"],
+    keywords: "kenmu restoration go-daigo godaigo ashikaga takauji nanbokucho northern southern courts yoshino 1336 1392 yoshimitsu",
+  },
+  {
+    era: "feudal", topic: "event",
+    date: "1336 – 1573",
+    title: "Muromachi Shogunate — The Ashikaga Age",
+    text: "The Ashikaga shoguns govern from Kyoto's Muromachi district, but never as firmly as Kamakura had: their power rests on a coalition of provincial military governors (shugo). Yoshimitsu builds the Golden Pavilion (1397) and opens official trade with Ming China; Yoshimasa's Silver Pavilion becomes a touchstone of later Japanese taste. After the Ōnin War the shoguns reign in name only, and Oda Nobunaga expels the last of them in 1573.",
+    tags: ["Ashikaga", "Muromachi", "Kinkaku-ji"],
+    keywords: "muromachi ashikaga shogunate bakufu yoshimitsu yoshimasa kinkakuji golden pavilion ginkakuji silver pavilion shugo daimyo 1573 yoshiaki",
+  },
+  {
+    era: "feudal", topic: "contact",
+    date: "14th – 16th Century",
+    title: "Ming China — Tally Trade & the Wakō",
+    text: "Pirate-traders known as wakō raid the coasts of Korea and China from bases in western Japan. To curb them and reopen commerce, Ashikaga Yoshimitsu accepts the title \"King of Japan\" from the Ming emperor and begins the tally trade (1404): licensed ships carry swords, copper, and sulfur to China and bring back silk, books, and vast quantities of copper coins, which become Japan's everyday currency. The wakō bands of the 16th century are mostly Chinese smugglers.",
+    flag: "🇨🇳 Ming China",
+    tags: ["Tally Trade", "Wakō"],
+    keywords: "ming china tally trade kango boeki wako pirates yoshimitsu king of japan copper coins eiraku tsuho tribute",
+  },
+  {
+    era: "feudal", topic: "peoples",
+    date: "1429 – 1609",
+    title: "Ryukyu Kingdom — Crossroads of the Sea",
+    text: "By the traditional account, Shō Hashi unites Okinawa's three rival kingdoms in 1429 and rules from Shuri Castle. As a tributary of Ming China with privileged access to Chinese ports, Ryukyu becomes a great entrepôt, its ships carrying goods between China, Japan, Korea, and Southeast Asian ports from Siam to Malacca. A bell cast in 1458 proclaims the kingdom a \"bridge between all nations\". Its languages, priestess-led religion, and court culture are distinct from Japan's.",
+    label: "Ryukyu",
+    tags: ["Ryukyu", "Shō Hashi", "Shuri"],
+    keywords: "ryukyu kingdom okinawa sho hashi shuri castle sanzan chuzan hokuzan nanzan tribute ming trade bridge of nations bell bankoku shinryo noro",
+  },
+  {
+    era: "feudal", topic: "peoples",
+    date: "13th Century – 1457",
+    title: "Ainu & Wajin — Koshamain's War",
+    text: "By about the 13th century a distinct Ainu culture takes shape across Hokkaido, Sakhalin, and the Kurils, built on hunting, fishing, and far-reaching trade — and on a spiritual world of kamuy, in which the bear is sent home to the gods in the iyomante ceremony. Japanese settlers (Wajin) establish forts on Hokkaido's southern tip. In 1457, by the account of the later Matsumae chronicle, the Ainu leader Koshamain destroys most of them before he is killed; the victor's descendants become the Matsumae lords themselves.",
+    label: "Ainu",
+    tags: ["Ainu", "Koshamain", "Kamuy"],
+    keywords: "ainu wajin koshamain war 1457 hokkaido ezo sakhalin kuril kamuy iyomante bear ceremony kakizaki matsumae takeda nobuhiro",
+  },
+  {
+    era: "feudal", topic: "event",
+    date: "1467 – 1477 CE",
+    title: "Ōnin War — Japan Shatters into Civil War",
+    text: "A succession dispute in the Ashikaga shogunate ignites the Ōnin War. Kyoto is devastated. The conflict triggers the Sengoku period — a century of constant warfare among hundreds of rival lords (daimyō). The old social order collapses; the age of the self-made warrior begins.",
+    tags: ["Ōnin War", "Sengoku"],
+    keywords: "onin war 1467 1477 sengoku warring states century civil war ashikaga collapse",
+  },
+  {
+    era: "feudal", topic: "contact",
+    date: "1543 – 1590s",
+    title: "Portugal — Guns, God, and the Namban Trade",
+    text: "Portuguese traders land on Tanegashima in 1543, introducing firearms (teppō) that revolutionize warfare. Francis Xavier arrives in 1549, beginning the Jesuit mission. Portuguese merchants establish trade through Nagasaki, importing guns, glass, tobacco, bread, and Christianity. The \"Namban\" (southern barbarian) trade transforms material culture.",
+    flag: "🇵🇹 Portugal",
+    tags: ["Firearms", "Jesuits", "Trade"],
+    keywords: "portugal portuguese 1543 tanegashima firearms guns teppo francis xavier 1549 jesuit nagasaki christianity namban",
+  },
+  {
+    era: "feudal", topic: "science",
+    date: "1543 – 1575",
+    title: "Firearms — From Curiosity to Mass Production",
+    text: "Within a year or two of the first Portuguese matchlocks reaching Tanegashima, Japanese swordsmiths are copying them; within a generation, workshops at Sakai and Kunitomo turn them out by the thousand. Japanese gunsmiths add refinements such as lacquered covers that keep the match alight in rain. At Nagashino in 1575 the Oda–Tokugawa army, firing from behind wooden palisades, breaks the Takeda assault; how decisive the guns were is still debated, but by then firearms are standard in every major army.",
+    tags: ["Matchlock", "Nagashino"],
+    keywords: "firearms guns matchlock arquebus teppo tanegashima sakai kunitomo gunsmith nagashino 1575 nobunaga takeda technology",
+  },
+  {
+    era: "feudal", topic: "loanword",
+    date: "1540s – 1630s",
+    title: "Portuguese — First European Words in Japanese",
+    text: "Portuguese loanwords are among the oldest European vocabulary in Japanese, many still in daily use centuries after their introduction.",
+    loanwords: {
+      label: "Portuguese → Japanese",
+      items: [
+        ["パン", "pan", "bread (pão)"],
+        ["タバコ", "tabako", "tobacco"],
+        ["天ぷら", "tempura", "uncertain (tempero or têmporas)"],
+        ["ボタン", "botan", "button (botão)"],
+        ["カッパ", "kappa", "raincoat (capa)"],
+        ["コップ", "koppu", "cup (copo; also Dutch kop)"],
+        ["カルタ", "karuta", "cards (carta)"],
+        ["金平糖", "konpeitō", "candy (confeito)"],
+        ["シャボン", "shabon", "soap (sabão)"],
+      ],
+    },
+    keywords: "portuguese loanwords pan bread tabako tobacco tempura botan button koppu cup karuta cards konpeito candy shabon soap bidoro glass kappa raincoat",
+  },
+  {
+    era: "feudal", topic: "language",
+    date: "1603 – 1604",
+    title: "Nippo Jisho — Jesuits Record Spoken Japanese",
+    text: "The Jesuit mission press at Nagasaki prints the Vocabulario da Lingoa de Iapam, a Japanese–Portuguese dictionary of some 32,000 entries written in the Roman alphabet. Because it spells words as they were actually pronounced, and marks regional and women's speech, it remains the best record of how Japanese sounded at the close of the Middle Ages. A decade earlier the mission press had printed Aesop's Fables and the Tale of the Heike in romanized Japanese.",
+    tags: ["Nippo Jisho", "Jesuits", "Rōmaji"],
+    keywords: "nippo jisho vocabulario jesuit dictionary portuguese nagasaki amakusa press romaji romanization pronunciation heike aesop esopo",
+  },
+  {
+    era: "feudal", topic: "contact",
+    date: "1590s",
+    title: "Spain — Franciscans & the Manila Trade",
+    text: "Spanish Franciscans arrive from Manila competing with Jesuits. The San Felipe incident (1596) leads to the crucifixion of 26 Christians in Nagasaki in 1597 — remembered as the Twenty-Six Martyrs of Japan. Spain intensifies missionary activity, fueling Hideyoshi's suspicion of foreign religion as a prelude to colonization.",
+    flag: "🇪🇸 Spain",
+    tags: ["Franciscans", "Martyrs"],
+    keywords: "spain spanish franciscan manila 1596 san felipe twenty six martyrs nagasaki",
+  },
+  {
+    era: "feudal", topic: "event",
+    date: "1568 – 1603 CE",
+    title: "The Three Unifiers — Nobunaga, Hideyoshi, Ieyasu",
+    text: "Oda Nobunaga begins Japan's reunification, burning the Tendai fortress of Enryaku-ji (1571) and crushing the Ikkō-ikki. After his assassination (1582), Toyotomi Hideyoshi completes unification and launches invasions of Korea. Tokugawa Ieyasu wins the Battle of Sekigahara (1600) — the largest samurai battle ever — and founds the Tokugawa shogunate in 1603.",
+    tags: ["Nobunaga", "Hideyoshi", "Sekigahara"],
+    keywords: "oda nobunaga toyotomi hideyoshi tokugawa ieyasu unification three unifiers enryakuji burned 1582 sekigahara 1600",
+  },
+  {
+    era: "feudal", topic: "contact",
+    date: "1592 – 1598",
+    title: "Korea — Hideyoshi's Invasions (Imjin War)",
+    text: "Aiming to conquer Ming China, Toyotomi Hideyoshi sends more than 150,000 troops into Korea. They take Seoul within weeks, but Admiral Yi Sun-sin's navy cuts their supply lines, Korean irregulars harass them, and Ming armies intervene. A second invasion in 1597 stalls; the armies withdraw when Hideyoshi dies in 1598. Korea is devastated. Tens of thousands of captives are taken to Japan — among them the potters who found the Arita, Satsuma, and Hagi kiln traditions.",
+    flag: "🇰🇷 Joseon Korea & 🇨🇳 Ming China",
+    tags: ["Imjin War", "Yi Sun-sin", "Ceramics"],
+    keywords: "imjin war korea invasion hideyoshi 1592 1598 yi sun-sin turtle ship joseon ming seoul captives potters arita satsuma hagi bunroku keicho",
+  },
+  {
+    era: "feudal", topic: "culture",
+    date: "14th – 16th Century",
+    title: "Zen Aesthetics — Wabi-Sabi, Tea & Noh",
+    text: "Zen Buddhism's aesthetic influence pervades Japanese culture: rock gardens (karesansui) distill nature to stone and sand; the tea ceremony (chadō) elevates mundane acts to spiritual practice; Noh theater sacralizes myth on stage; ink painting (suiboku-ga) captures essence in empty space. The ideals of wabi and sabi — beauty in austerity, imperfection, and impermanence — take root, later joined under the modern label \"wabi-sabi.\"",
+    tags: ["Wabi-Sabi", "Tea", "Noh"],
+    keywords: "zen aesthetics wabi sabi rock garden karesansui tea ceremony chado noh zeami ink painting suiboku muromachi golden pavilion",
+  },
+  {
+    era: "feudal", topic: "mythology",
+    date: "Feudal Era",
+    title: "Warrior Mythos, Yōkai & the Sacred Stage",
+    text: "Warrior ideals of honor, loyalty, and a good death take shape, drawing on Zen, Confucianism, and Shinto — later codified, and largely mythologized in the modern era, as bushidō. Feudal folklore expands the supernatural bestiary: tengu, oni, kappa, tanuki. Zeami perfects Noh theater where ghosts, gods, and demons manifest. The kamikaze divine wind becomes central to Japan's identity as a sacred nation.",
+    tags: ["Bushidō", "Yōkai", "Noh"],
+    keywords: "bushido warrior tengu oni yokai kappa tanuki kamikaze divine wind noh sacred stage supernatural",
+  },
+  {
+    era: "feudal", topic: "religion",
+    date: "Throughout Feudal Era",
+    title: "Shugendō — Mountain Asceticism",
+    text: "Syncretic path blending esoteric Buddhism, Shinto, and Daoism. Yamabushi mountain monks practiced extreme austerities — fire-walking, waterfall meditation, wilderness fasting — to gain supernatural powers (genriki). Neither purely Buddhist nor Shinto, Shugendō embodied Japan's spiritual syncretism.",
+    tags: ["Shugendō", "Yamabushi"],
+    keywords: "shugendo yamabushi mountain asceticism fire walking waterfall meditation esoteric",
+  },
+  {
+    era: "feudal", topic: "loanword",
+    date: "12th – 14th Century",
+    title: "Song Chinese — Words the Zen Monks Brought",
+    text: "Zen monks travelling between Japan and Song and Yuan China brought new \"Tang-sound\" (tō-on) readings and everyday words that became staples of Japanese life.",
+    loanwords: {
+      label: "Song–Yuan Chinese → Japanese",
+      items: [
+        ["椅子", "isu", "chair"],
+        ["蒲団", "futon", "bedding (orig. meditation cushion)"],
+        ["行灯", "andon", "paper lantern"],
+        ["饅頭", "manjū", "steamed bun"],
+        ["豆腐", "tōfu", "bean curd (first recorded 1183)"],
+      ],
+    },
+    keywords: "chinese zen vocabulary toon tang sound isu chair futon andon lantern manju bun tofu song yuan dynasty",
+  },
+
+  // ───── Early Modern Japan ─────
+  {
+    era: "earlymodern", topic: "event",
+    date: "1603 CE",
+    title: "Tokugawa Shogunate — 250 Years of Enforced Peace",
+    text: "Tokugawa Ieyasu establishes the Edo bakufu. The sankin-kōtai system (formalized in 1635) forces daimyō to alternate residence between domains and Edo, ensuring loyalty and stimulating roads, commerce, and urbanization. A hereditary status system sets samurai above commoners — idealized as four ranks of samurai, farmer, artisan, and merchant — with outcaste groups set apart. Edo (Tokyo) grows to around a million people by the 1720s — probably the largest city in the world.",
+    tags: ["Edo", "Tokugawa", "Sankin-kōtai"],
+    keywords: "edo tokugawa shogunate 1603 sankin kotai alternate attendance social hierarchy four classes peace 250 years",
+  },
+  {
+    era: "earlymodern", topic: "peoples",
+    date: "1609",
+    title: "Satsuma Invades Ryukyu",
+    text: "The Shimazu lords of Satsuma conquer Ryukyu with 3,000 men and carry King Shō Nei off to Japan. They keep the kingdom standing for one reason: its tribute trade with China. For 270 years Ryukyu serves two masters — paying taxes to Satsuma while its kings still receive investiture from Chinese emperors — and is ordered to conceal its Japanese ties whenever Chinese envoys visit.",
+    label: "Ryukyu",
+    tags: ["Satsuma", "Ryukyu", "Dual Subordination"],
+    keywords: "satsuma shimazu invasion ryukyu 1609 sho nei okinawa tribute china dual subordination sugar amami",
+  },
+  {
+    era: "earlymodern", topic: "peoples",
+    date: "1604 – 1789",
+    title: "Matsumae & Shakushain's War",
+    text: "The shogunate grants the Matsumae clan a monopoly on trade with the Ainu. Too far north to grow rice, the domain lives off that trade and tightens its terms decade by decade. In 1669 the Ainu leader Shakushain leads a widespread uprising; Matsumae invites him to peace talks and has him killed. Merchant-run fisheries then draw Ainu into coerced labor, provoking a last armed revolt in Kunashiri and Menashi in 1789.",
+    label: "Ainu",
+    tags: ["Ainu", "Shakushain", "Matsumae"],
+    keywords: "matsumae ainu trade monopoly shakushain war 1669 ezo hokkaido basho ukeoi fisheries kunashiri menashi 1789 revolt",
+  },
+  {
+    era: "earlymodern", topic: "event",
+    date: "1637 – 1639 CE",
+    title: "Shimabara Rebellion & Sakoku — Japan Closes Its Doors",
+    text: "The Shimabara Rebellion — a desperate uprising of Christian peasants and rōnin — ends in the slaughter of some 37,000 rebels. The shogunate imposes the maritime restrictions later called sakoku (\"closed country\"): Christianity is banned, the Portuguese are expelled, Japanese are forbidden to travel abroad, and large ocean-going ships are prohibited. Contact continues only through controlled gateways — the Dutch and Chinese at Nagasaki, Korea via Tsushima, Ryukyu via Satsuma, and the Ainu via Matsumae.",
+    tags: ["Shimabara", "Sakoku", "Isolation"],
+    keywords: "sakoku isolation shimabara rebellion 1637 1638 christianity eradication closed country 1639 dejima",
+  },
+  {
+    era: "earlymodern", topic: "contact",
+    date: "1641 – 1853",
+    title: "The Netherlands — Japan's Window to the West",
+    text: "The Dutch — through their East India Company (VOC) until 1799 — maintain a trading post on Dejima island — the sole European contact during sakoku. \"Dutch studies\" (rangaku) gives Japanese scholars access to Western medicine, anatomy, astronomy, botany, and military science. The anatomical translation Kaitai Shinsho (1774) revolutionizes Japanese medicine.",
+    flag: "🇳🇱 Netherlands (Dejima)",
+    tags: ["Rangaku", "Medicine", "VOC"],
+    keywords: "netherlands dutch dejima nagasaki voc rangaku dutch studies medicine anatomy kaitai shinsho western science",
+  },
+  {
+    era: "earlymodern", topic: "loanword",
+    date: "17th – 19th Century",
+    title: "Dutch — The Language of Western Learning",
+    text: "For two centuries, Dutch was Japan's primary conduit for European knowledge. Many Dutch loanwords survive in modern Japanese.",
+    loanwords: {
+      label: "Dutch → Japanese",
+      items: [
+        ["ビール", "bīru", "beer (bier)"],
+        ["コーヒー", "kōhī", "coffee (koffie)"],
+        ["ガラス", "garasu", "glass (glas)"],
+        ["ゴム", "gomu", "rubber (gom)"],
+        ["ランドセル", "randoseru", "school bag (ransel)"],
+        ["メス", "mesu", "scalpel (mes)"],
+        ["オルゴール", "orugōru", "music box (orgel)"],
+        ["ドンタク", "dontaku", "holiday (zondag)"],
+      ],
+    },
+    keywords: "dutch loanwords biru beer kohii coffee garasu glass gomu rubber randoseru school bag ponpu pump mesu scalpel dontaku holiday orugoru music box",
+  },
+  {
+    era: "earlymodern", topic: "science",
+    date: "17th – 19th Century",
+    title: "Wasan — Japan's Own Mathematics",
+    text: "Largely cut off from European mathematics, Japan develops its own. Seki Takakazu (d. 1708) devises an algebraic notation, works with determinants in 1683, independently of Leibniz and at about the same time, and finds the Bernoulli numbers on his own; his successors compute π to dozens of digits. Enthusiasts — samurai, merchants, farmers, and now and then women and children — paint geometry problems on wooden tablets (sangaku) and hang them in shrines and temples as offerings and challenges.",
+    tags: ["Wasan", "Seki Takakazu", "Sangaku"],
+    keywords: "wasan mathematics seki takakazu kowa determinants bernoulli numbers pi takebe katahiro sangaku temple geometry tablets",
+  },
+  {
+    era: "earlymodern", topic: "event",
+    date: "1688 – 1704",
+    title: "Genroku & the Forty-Seven Rōnin",
+    text: "Peace and commerce make the Genroku era a high point of townsman culture: Saikaku's tales of merchants and lovers, Chikamatsu's puppet plays, Bashō's travel poetry. Its most famous event is a vendetta. In 1701 Lord Asano draws his sword on the official Kira inside Edo Castle and is ordered to die; in early 1703 forty-seven of his now-masterless retainers kill Kira and are in turn sentenced to ritual suicide. Retold on stage as Chūshingura, it becomes Japan's national legend of loyalty.",
+    tags: ["Genroku", "47 Rōnin", "Chūshingura"],
+    keywords: "genroku 47 ronin forty-seven ako incident asano naganori kira yoshinaka oishi kuranosuke chushingura vendetta seppuku saikaku chikamatsu basho townsman chonin",
+  },
+  {
+    era: "earlymodern", topic: "women",
+    date: "Edo Period",
+    title: "Women under the Tokugawa Order",
+    text: "Neo-Confucian manuals such as the Onna Daigaku (\"Greater Learning for Women\") preach obedience to father, husband, and son. Practice is more varied: farm and merchant women run businesses and girls attend temple schools, while a husband can divorce with a three-and-a-half-line note and a wife's surest escape is flight to a \"divorce temple\" such as Tōkei-ji in Kamakura. Kabuki, begun by the dancer Izumo no Okuni around 1603, bars women from its stage in 1629.",
+    tags: ["Onna Daigaku", "Tōkei-ji", "Okuni"],
+    keywords: "women edo onna daigaku greater learning confucian divorce mikudarihan tokeiji enkiridera izumo no okuni kabuki 1629 ban",
+  },
+  {
+    era: "earlymodern", topic: "religion",
+    date: "Edo Period",
+    title: "Danka Buddhism — Temple as State Tool",
+    text: "Every household must register at a Buddhist temple for surveillance and anti-Christian enforcement. This secured the temples' institutional power, and funerary rites became Buddhism's main social role — later criticized as \"funeral Buddhism\" (sōshiki bukkyō). Older scholarship saw spiritual decline; recent historians find popular Buddhism still vigorous.",
+    tags: ["Danka", "Funeral Buddhism"],
+    keywords: "danka system temple buddhism funeral soshiki mandatory registration surveillance",
+  },
+  {
+    era: "earlymodern", topic: "religion",
+    date: "1630s – 1870s",
+    title: "Kakure Kirishitan — Hidden Christians",
+    text: "Driven underground by persecution, crypto-Christians maintained faith for over 200 years without priests, disguising icons as Buddhist statues and transmitting prayers (orasho) orally. When Catholic missionaries returned, villagers revealed themselves to a French priest in Nagasaki in 1865 — one of history's most remarkable acts of religious endurance.",
+    tags: ["Hidden Christians", "Persecution"],
+    keywords: "kakure kirishitan hidden christian crypto persecution secret faith icon disguised orasho orashio prayer 1865 oura petitjean",
+  },
+  {
+    era: "earlymodern", topic: "religion",
+    date: "18th Century",
+    title: "Kokugaku — National Learning Movement",
+    text: "Scholars like Motoori Norinaga seek to strip away Buddhist and Chinese \"contamination\" and recover pure ancient Shinto. They exalt the Kojiki, the emperor's divine nature, and Japan's unique spiritual identity. Kokugaku ideas would fuel the Meiji Restoration and construction of State Shinto.",
+    tags: ["Kokugaku", "Norinaga"],
+    keywords: "kokugaku national learning motoori norinaga hirata atsutane shinto purism kojiki emperor divine",
+  },
+  {
+    era: "earlymodern", topic: "culture",
+    date: "17th – 19th Century",
+    title: "Ukiyo-e, Kabuki & the Floating World",
+    text: "Edo culture flourishes: Hokusai's Great Wave and Hiroshige's landscapes transform world art; Kuniyoshi's warrior prints mythologize the past; kabuki theater electrifies audiences; Bashō perfects haiku; the pleasure quarters of Yoshiwara inspire literature, art, and music. Popular religion thrives through pilgrimage, Inari worship, and ghost story gatherings.",
+    tags: ["Hokusai", "Kabuki", "Haiku"],
+    keywords: "ukiyo-e hokusai hiroshige kuniyoshi great wave kabuki basho haiku floating world yoshiwara woodblock print",
+  },
+  {
+    era: "earlymodern", topic: "language",
+    date: "17th – 19th Century",
+    title: "Terakoya & the Reading Public",
+    text: "Thousands of temple schools (terakoya) teach commoner children reading, writing, and the abacus. By the end of the Edo period perhaps four in ten boys and one in ten girls have had some schooling — rates comparable to much of Europe at the time. Commercial woodblock publishers and lending libraries feed the demand with novels, travel guides, farming manuals, and almanacs, creating one of the largest reading publics of the early modern world.",
+    tags: ["Terakoya", "Literacy", "Publishing"],
+    keywords: "terakoya temple school literacy education reading publishing woodblock books lending library kashihon abacus soroban",
+  },
+  {
+    era: "earlymodern", topic: "mythology",
+    date: "Edo Period",
+    title: "Ghost Stories, Yōkai Catalogues & the Seven Lucky Gods",
+    text: "The Edo period codifies Japan's supernatural imagination. Yotsuya Kaidan and Ugetsu Monogatari weave Buddhist morality into tales of vengeful spirits. The hyakumonogatari kaidankai (\"100 Supernatural Tales\") becomes a parlor game. Artists catalogue yōkai systematically. The Shichi Fukujin (Seven Lucky Gods) — blending Shinto, Buddhist, Daoist, and Hindu deities — symbolize Japan's joyful syncretism.",
+    tags: ["Kaidan", "Yōkai", "Seven Gods"],
+    keywords: "kaidan ghost stories yotsuya hyakumonogatari shichi fukujin seven lucky gods yokai catalogue supernatural edo",
+  },
+  {
+    era: "earlymodern", topic: "event",
+    date: "1732 – 1837",
+    title: "Famine, Riot & Reform",
+    text: "Three great famines — Kyōhō (1732), Tenmei (1782–87, worsened by the eruption of Mount Asama), and Tenpō (1833–37) — kill hundreds of thousands. Peasant uprisings (ikki) and urban rice riots multiply, numbering in the thousands over the Edo period. In 1837 Ōshio Heihachirō, a former Osaka police official, leads an armed revolt against merchants hoarding rice; it is crushed within a day but shocks the regime. Successive shogunal reform programs fail to restore the old order.",
+    tags: ["Famine", "Ikki", "Ōshio"],
+    keywords: "famine kyoho tenmei tenpo mount asama eruption peasant uprising ikki uchikowashi rice riot oshio heihachiro osaka 1837 reforms",
+  },
+  {
+    era: "earlymodern", topic: "science",
+    date: "1804 – 1821",
+    title: "Hanaoka's Anaesthesia & Inō's Map",
+    text: "Two feats of late-Edo science. In 1804 the physician Hanaoka Seishū removes a breast tumor under general anaesthesia using a herbal compound of his own devising — four decades before ether is demonstrated in Boston. And from 1800 the retired merchant Inō Tadataka, starting in his mid-fifties, surveys almost the entire coastline of Japan on foot; his map, completed by his team in 1821, three years after his death, is accurate enough to remain in official use into the 20th century.",
+    tags: ["Hanaoka Seishū", "Inō Tadataka", "Medicine"],
+    keywords: "hanaoka seishu general anesthesia anaesthesia tsusensan surgery 1804 ino tadataka map survey coastline cartography 1821",
+  },
+  {
+    era: "earlymodern", topic: "event",
+    date: "1853 – 1868 CE",
+    title: "Perry's Black Ships & the Fall of the Shogunate",
+    text: "Commodore Matthew Perry arrives in Edo Bay with steam-powered warships (1853), shattering sakoku. The resulting \"unequal treaties\" with America, Britain, France, Russia, and the Netherlands humiliate Japan and trigger the sonnō jōi (\"revere emperor, expel barbarians\") crisis. The Tokugawa shogunate collapses. The Meiji Restoration of 1868 ends 265 years of Tokugawa rule — and nearly seven centuries of warrior government.",
+    flag: "🇺🇸 United States & 🇬🇧🇫🇷🇷🇺 European Powers",
+    tags: ["Perry", "Bakumatsu", "Meiji Restoration"],
+    keywords: "perry black ships 1853 united states commodore unequal treaties bakumatsu meiji restoration sonno joi",
+  },
+  {
+    era: "earlymodern", topic: "cult",
+    date: "1814 – 1838",
+    title: "Kurozumikyō & Tenrikyō — Early New Religions",
+    text: "As Edo social order frays, charismatic founders launch new movements outside established temples. Kurozumikyō (1814): solar-worship Shinto revelation. Tenrikyō (1838): Nakayama Miki's revelatory experience of God the Parent (Tenri-Ō-no-Mikoto) promising the \"joyous life\" for all. These precursors foreshadow the explosion of new religions in the modern era.",
+    tags: ["Kurozumikyō", "Tenrikyō"],
+    keywords: "kurozumikyo 1814 tenrikyo 1838 nakayama miki new religion revelation healing precursor",
+  },
+
+  // ───── Modern Japan ─────
+  {
+    era: "modern", topic: "event",
+    date: "1868 – 1912 CE",
+    title: "Meiji Restoration — From Feudalism to World Power",
+    text: "Imperial rule restored. Japan modernizes at astonishing speed: railways, telegraph, conscript army, public education, Meiji Constitution (1889). Victory in the Sino-Japanese War (1895) gains Taiwan; victory over Russia (1905) — the first modern Asian defeat of a European power — shocks the world and inspires anti-colonial movements across Asia. Japan annexes Korea in 1910.",
+    tags: ["Meiji", "Modernization", "Russo-Japanese War"],
+    keywords: "meiji restoration 1868 emperor modernization iwakura mission industrialization constitution 1889 sino japanese war 1895 russo japanese war 1905",
+  },
+  {
+    era: "modern", topic: "religion",
+    date: "1868 – 1945",
+    title: "State Shinto — Religion as National Ideology",
+    text: "The Meiji government decrees shinbutsu bunri — forced separation of Shinto and Buddhism after a millennium of fusion. The haibutsu kishaku (\"abolish Buddhism\") movement destroys thousands of temples. State Shinto is constructed centering on emperor worship, divine origins, and the Ise and Yasukuni shrines. Officially \"not a religion\" but mandatory civic observance.",
+    tags: ["State Shinto", "Haibutsu Kishaku"],
+    keywords: "state shinto shinbutsu bunri separation haibutsu kishaku abolish buddhism emperor worship yasukuni shrine imperial cult",
+  },
+  {
+    era: "modern", topic: "contact",
+    date: "1868 – 1912",
+    title: "Western Powers — Wholesale Modernization",
+    text: "The Iwakura Mission (1871–73) studies Western nations. Japan adopts Prussian military structure and constitution, British naval tradition, French and then German legal models, American agricultural methods, and German medical science. Thousands of foreign advisors (oyatoi gaikokujin) are hired. The ban on Christianity is lifted in 1873.",
+    flag: "🇬🇧 Britain · 🇩🇪 Germany · 🇫🇷 France · 🇺🇸 United States",
+    tags: ["Iwakura Mission", "Modernization"],
+    keywords: "britain germany france united states meiji westernization iwakura mission prussia military medicine law navy education baseball oyatoi gaikokujin",
+  },
+  {
+    era: "modern", topic: "science",
+    date: "1877 – 1912",
+    title: "Meiji Science Joins the World",
+    text: "The University of Tokyo is founded in 1877, staffed first largely by hired foreign professors and then by their Japanese students. Results come fast: Kitasato Shibasaburō grows the tetanus bacillus in pure culture and co-develops serum therapy in Berlin (1889–90); Takamine Jōkichi isolates adrenaline (1900); Nagaoka Hantarō proposes a \"Saturnian\" atom with electrons orbiting a massive center (1904); and Ikeda Kikunae identifies glutamate as the source of a fifth taste he names umami (1908).",
+    tags: ["Kitasato", "Takamine", "Umami"],
+    keywords: "meiji science university of tokyo imperial kitasato shibasaburo tetanus serum therapy takamine jokichi adrenaline nagaoka hantaro saturnian atom ikeda kikunae umami glutamate msg",
+  },
+  {
+    era: "modern", topic: "loanword",
+    date: "1868 – 1945",
+    title: "English, German & French — Meiji Loanword Flood",
+    text: "Each Western nation donated specialized vocabulary reflecting their area of influence on Japan.",
+    loanwords: {
+      label: "Meiji-era European loanwords",
+      items: [
+        ["アルバイト", "arubaito", "part-time (Arbeit, DE)"],
+        ["カルテ", "karute", "medical chart (Karte, DE)"],
+        ["リュックサック", "ryukkusakku", "backpack (DE)"],
+        ["ズボン", "zubon", "trousers (prob. jupon, FR)"],
+        ["アンケート", "ankēto", "survey (enquête, FR)"],
+        ["デッサン", "dessan", "sketch (dessin, FR)"],
+        ["ベースボール", "bēsubōru", "baseball (EN)"],
+      ],
+    },
+    keywords: "english german french loanwords arubaito arbeit karute karte zubon jupon anketo enquete dessan dessin station baseball",
+  },
+  {
+    era: "modern", topic: "language",
+    date: "1880s – 1900s",
+    title: "Genbun Itchi — Writing as People Speak",
+    text: "Until Meiji, serious writing uses classical grammar centuries removed from speech. Novelists led by Futabatei Shimei, whose Ukigumo (1887–89) is often called Japan's first modern novel, push to \"unify speech and writing\" (genbun itchi); by the 1900s the colloquial style has won in fiction and school textbooks, with educated Tokyo speech as the national standard. Translators meanwhile coin or repurpose kanji compounds for Western ideas — shakai (society), jiyū (liberty), tetsugaku (philosophy) — many of which pass into Chinese and Korean.",
+    tags: ["Genbun Itchi", "Futabatei", "Standard Japanese"],
+    keywords: "genbun itchi futabatei shimei ukigumo colloquial style standard japanese hyojungo tokyo dialect wasei kango shakai jiyu tetsugaku nishi amane translation",
+  },
+  {
+    era: "modern", topic: "peoples",
+    date: "1869 – Present",
+    title: "Hokkaido Colonized — The Ainu Dispossessed",
+    text: "The Meiji state renames Ezo \"Hokkaido\" in 1869 and settles it with farmer-soldiers and migrants under a Colonization Commission. Ainu land is treated as ownerless; salmon fishing and deer hunting are restricted; the 1899 \"Former Aborigines Protection Act\" pushes farming and Japanese-language schooling. That law stands until 1997. Japan's parliament recognizes the Ainu as an indigenous people in a 2008 resolution, and a 2019 law writes that status into statute.",
+    label: "Ainu",
+    tags: ["Hokkaido", "Ainu", "Assimilation"],
+    keywords: "hokkaido ezo colonization kaitakushi tondenhei ainu assimilation former aborigines protection act 1899 1997 indigenous 2008 2019 upopoy",
+  },
+  {
+    era: "modern", topic: "peoples",
+    date: "1879 – Present",
+    title: "From Ryukyu to Okinawa",
+    text: "Japan abolishes the Ryukyu Kingdom in 1879, sends its last king to Tokyo, and creates Okinawa Prefecture; Ryukyuan languages are suppressed in schools. In 1945 the Battle of Okinawa kills some 200,000 people, more than half of them Okinawans — among them an estimated 94,000 or more civilians. The United States governs the islands until 1972. Okinawa — 0.6 percent of Japan's land — still hosts about 70 percent of the area used exclusively by U.S. forces in Japan.",
+    label: "Okinawa",
+    tags: ["Okinawa", "Ryukyu Disposition", "U.S. Bases"],
+    keywords: "okinawa ryukyu disposition shobun 1879 sho tai annexation battle of okinawa 1945 civilians reversion 1972 us bases american military dialect",
+  },
+  {
+    era: "modern", topic: "empire",
+    date: "1895 – 1945",
+    title: "Taiwan — The First Overseas Colony",
+    text: "China cedes Taiwan after the First Sino-Japanese War, and Japan sets out to make it a model colony. Armed resistance is put down over two decades; railways, ports, public-health campaigns, and sugar and rice plantations follow, built to serve the home islands. In 1930 Seediq villagers rise at Musha (Wushe), killing some 130 Japanese at a school sports day; the army replies with aircraft, artillery, and gas — tear gas certainly, lethal agents by some accounts. From 1937 the kōminka campaign presses Taiwanese to adopt Japanese names, language, and Shinto worship.",
+    flag: "🇹🇼 Taiwan",
+    tags: ["Taiwan", "Musha Incident", "Kōminka"],
+    keywords: "taiwan colony 1895 shimonoseki government-general sugar musha wushe incident seediq mona rudao kominka assimilation formosa",
+  },
+  {
+    era: "modern", topic: "empire",
+    date: "1910 – 1945",
+    title: "Korea under Japanese Rule",
+    text: "Japan makes Korea a protectorate in 1905 and annexes it outright in 1910, ruling through a governor-general backed by military police. On March 1, 1919, Koreans across the peninsula join peaceful independence demonstrations — as many as two million over the following weeks. Korean accounts count some 7,500 killed in the crackdown; Japanese officials at the time, about 550. In wartime the colony is mobilized: Koreans are pressed to take Japanese names and worship at Shinto shrines, hundreds of thousands are conscripted to labor in mines and factories, and women are forced into military brothels as \"comfort women\".",
+    flag: "🇰🇷 Korea",
+    tags: ["Korea", "March First Movement", "Annexation"],
+    keywords: "korea annexation 1910 protectorate 1905 governor-general march first movement 1919 samil independence soshi kaimei names forced labor comfort women chosen colony",
+  },
+  {
+    era: "modern", topic: "event",
+    date: "1912 – 1926",
+    title: "Taishō Democracy",
+    text: "Under the frail Taishō emperor, power shifts toward elected politicians. Nationwide rice riots in 1918 bring down the cabinet and install Hara Takashi, the first commoner prime minister, at the head of a party government. Labor unions, a women's movement, and a lively urban mass culture of cafés, cinema, and \"modern girls\" follow. In 1925 all men over twenty-five gain the vote — in the same parliamentary session that passes the Peace Preservation Law later used to crush the left.",
+    tags: ["Taishō", "Hara Takashi", "Suffrage"],
+    keywords: "taisho democracy 1912 1926 rice riots 1918 hara takashi kei party cabinet universal manhood suffrage 1925 peace preservation law moga modern girl",
+  },
+  {
+    era: "modern", topic: "event",
+    date: "September 1, 1923",
+    title: "Great Kantō Earthquake",
+    text: "A magnitude 7.9 earthquake strikes just before noon, as stoves are lit for lunch. Firestorms consume much of Tokyo and most of Yokohama; about 105,000 people die, some 38,000 of them in a single open lot where refugees had gathered. In the chaos, rumors spread that Koreans are poisoning wells, and vigilantes, police, and soldiers murder Koreans in numbers usually estimated in the thousands, along with Chinese residents and Japanese socialists. September 1 is now Disaster Prevention Day.",
+    tags: ["Kantō Earthquake", "Tokyo", "Massacre"],
+    keywords: "great kanto earthquake 1923 tokyo yokohama fire firestorm honjo korean massacre vigilantes disaster prevention day",
+  },
+  {
+    era: "modern", topic: "event",
+    date: "1931 – 1937",
+    title: "Road to War — Manchuria to Nanjing",
+    text: "In 1931 officers of Japan's Kwantung Army blow up a stretch of railway near Mukden, blame Chinese troops, and seize Manchuria without orders from Tokyo. Civilian government never recovers control: Prime Minister Inukai is assassinated by naval officers in 1932, Japan quits the League of Nations in 1933, and an army coup attempt paralyzes Tokyo in February 1936. A clash at the Marco Polo Bridge in July 1937 becomes full-scale war with China; that December Japanese troops take Nanjing and kill prisoners and civilians on a massive scale — estimates range from tens of thousands to 300,000.",
+    tags: ["Manchurian Incident", "February 26", "Nanjing"],
+    keywords: "manchurian incident mukden 1931 kwantung army inukai tsuyoshi may 15 incident league of nations 1933 february 26 incident 1936 marco polo bridge 1937 second sino-japanese war nanjing nanking massacre militarism",
+  },
+  {
+    era: "modern", topic: "empire",
+    date: "1932 – 1945",
+    title: "Manchukuo & the Co-Prosperity Sphere",
+    text: "Japan dresses its conquest of Manchuria as an independent state, Manchukuo, under the last Qing emperor, Puyi; hundreds of thousands of Japanese farmers are settled there. In 1940 Tokyo proclaims a \"Greater East Asia Co-Prosperity Sphere\" — Asia freed from Western colonialism under Japanese leadership. In practice occupation brings forced labor, requisitioned rice, and atrocities, including Unit 731's biological-warfare experiments on living prisoners. Yet the collapse of European rule also speeds independence movements from Indonesia to Burma.",
+    tags: ["Manchukuo", "Co-Prosperity Sphere", "Unit 731"],
+    keywords: "manchukuo manchuria puyi settlers greater east asia co-prosperity sphere 1940 occupation southeast asia unit 731 biological warfare indonesia burma philippines",
+  },
+  {
+    era: "modern", topic: "event",
+    date: "1941 – 1945 CE",
+    title: "World War II — Imperial Expansion and Atomic Devastation",
+    text: "Already four years into full-scale war in China, Japan attacks Pearl Harbor (1941) and conquers much of Asia and the Pacific. State Shinto mythology reaches its zenith — the emperor is a living god (arahitogami), kamikaze pilots invoke divine wind. The war kills an estimated twenty million or more across Asia. The atomic bombings of Hiroshima and Nagasaki and the Soviet entry into the war (August 1945) bring surrender, announced on August 15 and signed on September 2.",
+    tags: ["WWII", "Hiroshima", "Surrender"],
+    keywords: "world war two wwii 1941 1945 pearl harbor hiroshima nagasaki atomic bomb surrender emperor kamikaze arahitogami imperial expansion asia",
+  },
+  {
+    era: "modern", topic: "empire",
+    date: "1945 – Present",
+    title: "Empire's Aftermath",
+    text: "Defeat strips Japan of every overseas territory, and more than six million soldiers and settlers are shipped home. The Tokyo war crimes tribunal (1946–48) convicts twenty-five leaders and hangs seven, including wartime premier Tōjō Hideki. Relations are restored with South Korea in 1965 and China in 1972, and prime ministers have since issued apologies — notably Murayama Tomiichi's in 1995. But textbooks, \"comfort women\", forced labor, and visits to Yasukuni Shrine, where convicted war criminals are enshrined, remain live disputes.",
+    tags: ["Tokyo Trials", "Repatriation", "Yasukuni"],
+    keywords: "repatriation hikiage tokyo trial war crimes tribunal imtfe tojo hideki san francisco treaty normalization 1965 1972 murayama statement apology textbooks comfort women yasukuni zainichi",
+  },
+  {
+    era: "modern", topic: "event",
+    date: "1945 – 1970s CE",
+    title: "Postwar Rebirth — From Ashes to Economic Miracle",
+    text: "Emperor Hirohito's 1946 New Year rescript — the \"Humanity Declaration\" — denies that the emperor is a living god. The new constitution guarantees religious freedom, women's suffrage, and the renunciation of war (Article 9). American occupation reshapes institutions. Japan's \"economic miracle\" transforms the devastated nation into the capitalist world's second-largest economy by 1968, with innovations in electronics, automobiles, and manufacturing.",
+    tags: ["Occupation", "Article 9", "Economic Miracle"],
+    keywords: "postwar occupation macarthur 1945 1952 humanity declaration hirohito constitution article 9 peace democracy economic miracle 1960s",
+  },
+  {
+    era: "modern", topic: "women",
+    date: "1871 – Present",
+    title: "Bluestockings, the Vote & Article 24",
+    text: "Six-year-old Tsuda Umeko sails with the Iwakura Mission in 1871 and later founds one of Japan's first private colleges for women. In 1911 Hiratsuka Raichō launches the journal Seitō (\"Bluestocking\") with the words \"In the beginning, woman was the sun.\" Women finally vote on April 10, 1946, electing thirty-nine of their own to parliament; Article 24 of the new constitution, drafted by 22-year-old Beate Sirota, guarantees equality in marriage. An equal employment law follows in 1985. In 2025 Takaichi Sanae becomes Japan's first woman prime minister.",
+    tags: ["Seitō", "Suffrage", "Article 24"],
+    keywords: "women tsuda umeko iwakura hiratsuka raicho seito bluestocking ichikawa fusae suffrage vote 1946 article 24 beate sirota gordon equal employment opportunity law 1985 takaichi sanae prime minister feminism",
+  },
+  {
+    era: "modern", topic: "contact",
+    date: "1945 – Present",
+    title: "The United States — Occupation & Enduring Alliance",
+    text: "The American occupation (1945–52) under MacArthur reshapes Japan's constitution, education, land reform, and popular culture. American jazz, film, fashion, democratic ideals, and consumer culture flood in. English becomes the dominant foreign language. The US-Japan security alliance anchors Cold War strategy. American cultural influence remains pervasive — from baseball to fast food to Hollywood.",
+    flag: "🇺🇸 United States",
+    tags: ["Occupation", "Alliance"],
+    keywords: "united states occupation macarthur american culture jazz film fashion democracy english language cold war alliance",
+  },
+  {
+    era: "modern", topic: "loanword",
+    date: "1945 – Present",
+    title: "English — The Dominant Modern Loanword Source",
+    text: "Postwar and digital-era Japanese absorbed thousands of English words, including uniquely Japanese coinages (wasei-eigo).",
+    loanwords: {
+      label: "English → Japanese (postwar & digital era)",
+      items: [
+        ["テレビ", "terebi", "television"],
+        ["マンション", "manshon", "condominium (from 'mansion')"],
+        ["パソコン", "pasokon", "personal computer"],
+        ["スマホ", "sumaho", "smartphone"],
+        ["コンビニ", "konbini", "convenience store"],
+        ["アニメ", "anime", "animation"],
+        ["コスプレ", "kosupure", "costume play"],
+        ["SNS", "esu-enu-esu", "social media"],
+      ],
+    },
+    keywords: "postwar english loanwords terebi television manshon mansion condominium depato department store pasokon computer sumaho smartphone konbini convenience anime kosupure wasei eigo",
+  },
+  {
+    era: "modern", topic: "language",
+    date: "1946 – Present",
+    title: "Script Reform — From 1,850 Kanji to Emoji",
+    text: "Occupation-era reformers debate abolishing kanji altogether; instead, in 1946 the government limits official use to 1,850 characters, goes on to simplify hundreds of their forms, and respells kana to match modern pronunciation. It is replaced in 1981 by the jōyō kanji list — a guideline rather than a limit — which now stands at 2,136 characters. Kana-to-kanji typing arrives with the first Japanese word processor, Toshiba's JW-10, announced in 1978, and in 1999 Kurita Shigetaka designs 176 pictographs for NTT DoCoMo phones: the set that popularizes emoji.",
+    tags: ["Jōyō Kanji", "Word Processor", "Emoji"],
+    keywords: "script reform toyo kanji 1850 joyo kanji 2136 shinjitai simplified modern kana usage toshiba jw-10 word processor kana kanji conversion kurita shigetaka emoji docomo 1999",
+  },
+  {
+    era: "modern", topic: "loanword",
+    date: "19th Century – Present",
+    title: "Japanese Abroad — Words the World Borrowed",
+    text: "The borrowing runs both ways. English has taken words from Japanese since the 1600s, and heavily since the 1850s: most name things first met in Japan, but a few, like \"tycoon\" and \"honcho\", have origins most speakers never suspect.",
+    label: "Exported Words",
+    loanwords: {
+      label: "Japanese → English",
+      items: [
+        ["津波", "tsunami", "\"harbor wave\""],
+        ["大君", "taikun", "tycoon (\"great lord\", the shogun's title in foreign dealings)"],
+        ["班長", "hanchō", "honcho (squad leader)"],
+        ["人力車", "jinrikisha", "rickshaw"],
+        ["絵文字", "emoji", "\"picture character\"; unrelated to \"emotion\""],
+        ["カラオケ", "karaoke", "\"empty orchestra\""],
+        ["旨味", "umami", "savory fifth taste"],
+        ["漫画", "manga", "comics"],
+        ["布団", "futon", "bedding"],
+        ["過労死", "karōshi", "death from overwork"],
+        ["数独", "sūdoku", "sudoku"],
+      ],
+    },
+    keywords: "exported words japanese loanwords in english tsunami tycoon taikun honcho hancho rickshaw jinrikisha emoji karaoke umami manga futon karoshi sudoku",
+  },
+  {
+    era: "modern", topic: "science",
+    date: "1949 – Present",
+    title: "Bullet Trains, Transistors & Nobel Prizes",
+    text: "Yukawa Hideki wins Japan's first Nobel Prize in 1949 for predicting the meson. Postwar engineers turn licensed and home-grown technology into world-beating products: Sony's transistor radios (from 1955) and Walkman (1979), Toyota's lean production system, and the Tōkaidō Shinkansen, which opens in 1964 as the world's first high-speed railway. Later milestones include the blue LED, Yamanaka Shinya's induced pluripotent stem cells (2006), and the Hayabusa probe's return of asteroid dust to Earth (2010).",
+    tags: ["Shinkansen", "Yukawa", "iPS Cells"],
+    keywords: "yukawa hideki nobel prize meson sony transistor radio walkman toyota production system shinkansen bullet train 1964 blue led nakamura akasaki amano yamanaka shinya ips cells hayabusa asteroid technology",
+  },
+  {
+    era: "modern", topic: "event",
+    date: "1985 – 2010s",
+    title: "Bubble & the Lost Decades",
+    text: "After the 1985 Plaza Accord drives up the yen, cheap credit inflates stock and land prices to absurd heights — at the peak, the grounds of the Imperial Palace are said to be worth more than all the real estate in California. The Nikkei index tops out at 38,915 on the last trading day of 1989, then loses more than half its value in under three years; it does not regain that peak until 2024. Banks choke on bad loans, growth, wages, and prices stagnate for a generation, and lifetime employment gives way to insecure contract work.",
+    tags: ["Bubble Economy", "Lost Decades", "Nikkei"],
+    keywords: "bubble economy plaza accord 1985 nikkei 1989 crash land prices imperial palace lost decade lost decades deflation bad loans stagnation heisei recession employment ice age",
+  },
+  {
+    era: "modern", topic: "cult",
+    date: "1892",
+    title: "Ōmoto-kyō — The Mother of New Religions",
+    text: "Founded by Deguchi Nao and built up by her son-in-law Deguchi Onisaburō. Shinto-derived millenarian movement prophesying world renewal. Profoundly influential — Ōmoto spawned or inspired Seichō-no-Ie, Sekai Kyūseikyō (Church of World Messianity), and others. Twice violently suppressed by the imperial state (1921, 1935) for challenging the emperor's spiritual monopoly.",
+    tags: ["Ōmoto-kyō", "Suppressed"],
+    keywords: "omoto-kyo deguchi nao 1892 millenarian suppression twice raided seicho no ie worldmate inspired",
+  },
+  {
+    era: "modern", topic: "cult",
+    date: "Founded 1930",
+    title: "Sōka Gakkai / SGI — Japan's Largest New Religion",
+    text: "Nichiren Buddhist lay organization. Founder Makiguchi died in prison for refusing State Shinto compliance. Under Toda and Ikeda, it grew explosively through aggressive proselytization (shakubuku) to millions of members. Founded the Kōmeitō political party. Emphasizes chanting for material and spiritual benefits. Now a global organization (SGI) claiming 12 million members worldwide; scholars put active membership in Japan at a few million.",
+    tags: ["Sōka Gakkai", "Kōmeitō"],
+    keywords: "soka gakkai sgi nichiren buddhist lay organization shakubuku komeito party political power millions members 1930",
+  },
+  {
+    era: "modern", topic: "cult",
+    date: "1984 – 1995",
+    title: "Aum Shinrikyō — Apocalyptic Terror",
+    text: "Founded by Asahara Shōkō. An apocalyptic cult blending Vajrayāna Buddhism, Hindu deities (Shiva), Christian eschatology, and science fiction. Committed the 1995 Tokyo subway sarin gas attack, killing 14 and injuring roughly 6,000. The attack traumatized Japan and stigmatized all new religious movements. Asahara executed in 2018. Remnants reorganized as Aleph and Hikari no Wa.",
+    label: "Cult",
+    tags: ["Aum", "Sarin Attack", "Terrorism"],
+    keywords: "aum shinrikyo aleph asahara shoko sarin tokyo subway 1995 apocalyptic vajrayana shiva executed 2018",
+  },
+  {
+    era: "modern", topic: "cult",
+    date: "Founded 1986",
+    title: "Kōfuku no Kagaku (Happy Science)",
+    text: "Founded by Ōkawa Ryūhō, who claimed to channel Buddha, Jesus, Muhammad, and others. Built a media empire of films, books, and schools. Teaches that Ōkawa is the supreme deity \"El Cantare.\" Blends self-help, new age spirituality, and political conservatism. Ōkawa died in 2023; the movement's future is uncertain.",
+    tags: ["Happy Science", "El Cantare"],
+    keywords: "happy science kofuku no kagaku okawa ryuho el cantare 1986 channel buddha jesus media empire films",
+  },
+  {
+    era: "modern", topic: "cult",
+    date: "Significant from 1960s",
+    title: "Unification Church — Korean-Origin Controversy",
+    text: "The Unification Church (Sekai Kirisutokyō Tōitsu Shinrei Kyōkai; since 2015 the Family Federation for World Peace and Unification) built a large Japanese following and vast donation income through aggressive recruitment and fundraising. The assassination of former PM Abe Shinzō in 2022 — by a man whose mother was impoverished by the church — reignited national debate over cult influence in Japanese politics and led to a court-ordered dissolution of its Japanese religious corporation (ordered 2025, final 2026) over decades of coercive donation solicitation.",
+    flag: "🇰🇷 South Korean origin",
+    label: "Cult",
+    tags: ["Unification Church", "Abe Assassination"],
+    keywords: "unification church sekai moonies korean sun myung moon abe shinzo assassination 2022 controversy political influence",
+  },
+  {
+    era: "modern", topic: "event",
+    date: "March 11, 2011",
+    title: "Tōhoku Earthquake, Tsunami & Fukushima",
+    text: "A magnitude 9.0 earthquake — the most powerful in Japan's recorded history — triggers a devastating tsunami that kills nearly 20,000. The Fukushima Daiichi nuclear meltdown becomes the worst nuclear disaster since Chernobyl. The triple catastrophe reshapes Japan's energy policy, emergency preparedness, and national psyche.",
+    tags: ["3/11", "Tsunami", "Fukushima"],
+    keywords: "2011 tohoku earthquake tsunami fukushima nuclear disaster march 11 great east japan",
+  },
+  {
+    era: "modern", topic: "event",
+    date: "1989 – Present",
+    title: "Heisei to Reiwa — An Aging Nation",
+    text: "The Heisei era opens with the bubble's collapse and is marked by the 1995 Kobe earthquake, which kills more than 6,400. Japan's population peaks around 2008 at 128 million and begins to shrink; nearly three in ten people are now aged sixty-five or older, and births to Japanese nationals have fallen below 700,000 a year. In 2019 Emperor Akihito becomes the first emperor to abdicate in two centuries, and his son Naruhito's accession opens the Reiwa era.",
+    tags: ["Heisei", "Reiwa", "Demographics"],
+    keywords: "heisei reiwa akihito abdication 2019 naruhito kobe earthquake 1995 hanshin awaji population decline aging ageing society birth rate demographics shoshika koreika",
+  },
+  {
+    era: "modern", topic: "mythology",
+    date: "1868 – Present",
+    title: "From State Myth to Anime — Mythology's Modern Life",
+    text: "Meiji government repackaged ancient myths as literal national history. Postwar, the emperor became human and myths became \"just stories.\" Yet mythology found new life: Miyazaki's films reimagine Shinto animism; Amaterasu appears in Ōkami; yōkai fill Pokémon; Susanoo and Tsukuyomi lend their names to powers in Naruto. Matsuri festivals keep mythology alive in embodied practice across thousands of communities.",
+    tags: ["Anime", "Miyazaki", "Matsuri"],
+    keywords: "state mythology jimmu emperor divine postwar demythologization anime manga miyazaki spirited away mononoke okami naruto yokai pokemon matsuri festival",
+  },
+  {
+    era: "modern", topic: "culture",
+    date: "1980s – Present",
+    title: "Global Soft Power — Japan's Cultural Export",
+    text: "Japanese culture flows outward: anime, manga, J-pop, video games (Nintendo, Sony), cuisine (sushi, ramen), fashion (Comme des Garçons, kawaii), and design influence the world. \"Cool Japan\" becomes a government strategy. Japan transitions from cultural importer to one of the world's most influential cultural exporters, while maintaining deep traditional roots.",
+    tags: ["Anime", "Soft Power", "Global"],
+    keywords: "global soft power anime manga j-pop sushi ramen kawaii nintendo sony toyota cultural export cool japan",
+  },
+];
+
+// @reference-data
+
+// Period strip above the timeline. `era` ties each period to an era section.
+const PERIODS = [
+  { era: "prehistoric", name: "Jōmon", kanji: "縄文", dates: "c. 14,000 – 300 BCE" },
+  { era: "prehistoric", name: "Yayoi", kanji: "弥生", dates: "c. 300 BCE – 250 CE" },
+  { era: "prehistoric", name: "Kofun", kanji: "古墳", dates: "c. 250 – 538" },
+  { era: "prehistoric", name: "Asuka", kanji: "飛鳥", dates: "538 – 710" },
+  { era: "classical", name: "Nara", kanji: "奈良", dates: "710 – 794" },
+  { era: "classical", name: "Heian", kanji: "平安", dates: "794 – 1185" },
+  { era: "feudal", name: "Kamakura", kanji: "鎌倉", dates: "1185 – 1333" },
+  { era: "feudal", name: "Muromachi", kanji: "室町", dates: "1336 – 1573" },
+  { era: "feudal", name: "Azuchi–Momoyama", kanji: "安土桃山", dates: "1573 – 1603" },
+  { era: "earlymodern", name: "Edo", kanji: "江戸", dates: "1603 – 1868" },
+  { era: "modern", name: "Meiji", kanji: "明治", dates: "1868 – 1912" },
+  { era: "modern", name: "Taishō", kanji: "大正", dates: "1912 – 1926" },
+  { era: "modern", name: "Shōwa", kanji: "昭和", dates: "1926 – 1989" },
+  { era: "modern", name: "Heisei", kanji: "平成", dates: "1989 – 2019" },
+  { era: "modern", name: "Reiwa", kanji: "令和", dates: "2019 –" },
+];
+
+// Key figures, in order of birth. Selecting one runs `find` as a search,
+// so `find` must match text or keywords in at least one entry.
+const FIGURES = [
+  { name: "Himiko", kanji: "卑弥呼", dates: "d. c. 248", role: "Shaman-queen of Yamatai; the earliest ruler of Japan described in any detail.", find: "himiko" },
+  { name: "Prince Shōtoku", kanji: "聖徳太子", dates: "574 – 622", role: "Regent who championed Buddhism; traditionally credited with the Seventeen-Article Constitution.", find: "prince shōtoku" },
+  { name: "Saichō", kanji: "最澄", dates: "767 – 822", role: "Founder of Tendai on Mount Hiei, the \"mother school\" of later Japanese Buddhism.", find: "saichō" },
+  { name: "Kūkai", kanji: "空海", dates: "774 – 835", role: "Founder of Shingon esoteric Buddhism on Mount Kōya; revered as Kōbō Daishi.", find: "kūkai" },
+  { name: "Sugawara no Michizane", kanji: "菅原道真", dates: "845 – 903", role: "Scholar-statesman who died in exile and was deified as Tenjin, god of learning.", find: "michizane" },
+  { name: "Murasaki Shikibu", kanji: "紫式部", dates: "c. 973 – c. 1014", role: "Court lady and author of The Tale of Genji.", find: "murasaki" },
+  { name: "Minamoto no Yoritomo", kanji: "源頼朝", dates: "1147 – 1199", role: "Victor of the Genpei War and founder of the Kamakura shogunate.", find: "yoritomo" },
+  { name: "Hōjō Masako", kanji: "北条政子", dates: "1157 – 1225", role: "The \"nun shogun\" who held the Kamakura regime together after Yoritomo's death.", find: "masako" },
+  { name: "Shinran", kanji: "親鸞", dates: "1173 – 1263", role: "Hōnen's disciple and founder of Jōdo Shinshū, today Japan's largest Buddhist denomination.", find: "shinran" },
+  { name: "Dōgen", kanji: "道元", dates: "1200 – 1253", role: "Founder of Sōtō Zen and its practice of \"just sitting\".", find: "dōgen" },
+  { name: "Nichiren", kanji: "日蓮", dates: "1222 – 1282", role: "Prophet-monk who taught exclusive faith in the Lotus Sutra.", find: "nichiren" },
+  { name: "Emperor Go-Daigo", kanji: "後醍醐天皇", dates: "1288 – 1339", role: "Overthrew the Kamakura shogunate and attempted direct imperial rule.", find: "go-daigo" },
+  { name: "Ashikaga Yoshimitsu", kanji: "足利義満", dates: "1358 – 1408", role: "Third Ashikaga shogun; reunited the two courts, built the Golden Pavilion, opened trade with Ming China.", find: "yoshimitsu" },
+  { name: "Zeami", kanji: "世阿弥", dates: "c. 1363 – c. 1443", role: "Actor, playwright, and theorist who perfected Noh.", find: "zeami" },
+  { name: "Shō Hashi", kanji: "尚巴志", dates: "1372 – 1439", role: "Unifier of Okinawa and founder of the Ryukyu Kingdom.", find: "shō hashi" },
+  { name: "Oda Nobunaga", kanji: "織田信長", dates: "1534 – 1582", role: "First of the three unifiers; broke the military power of the Buddhist institutions.", find: "nobunaga" },
+  { name: "Toyotomi Hideyoshi", kanji: "豊臣秀吉", dates: "1537 – 1598", role: "Peasant-born general who completed unification and invaded Korea.", find: "hideyoshi" },
+  { name: "Tokugawa Ieyasu", kanji: "徳川家康", dates: "1543 – 1616", role: "Victor of Sekigahara and founder of the Tokugawa shogunate.", find: "ieyasu" },
+  { name: "Shakushain", kanji: "シャクシャイン", dates: "d. 1669", role: "Ainu leader of the 1669 war against the Matsumae domain.", find: "shakushain" },
+  { name: "Seki Takakazu", kanji: "関孝和", dates: "c. 1642 – 1708", role: "Mathematician at the head of the wasan tradition.", find: "seki takakazu" },
+  { name: "Matsuo Bashō", kanji: "松尾芭蕉", dates: "1644 – 1694", role: "Poet who raised haiku to a major art.", find: "bashō" },
+  { name: "Motoori Norinaga", kanji: "本居宣長", dates: "1730 – 1801", role: "Kokugaku scholar who spent three decades on his commentary on the Kojiki.", find: "norinaga" },
+  { name: "Inō Tadataka", kanji: "伊能忠敬", dates: "1745 – 1818", role: "Surveyor who mapped Japan's coastline on foot.", find: "inō tadataka" },
+  { name: "Katsushika Hokusai", kanji: "葛飾北斎", dates: "1760 – 1849", role: "Ukiyo-e master of the Great Wave.", find: "hokusai" },
+  { name: "Matthew C. Perry", kanji: "ペリー", dates: "1794 – 1858", role: "U.S. commodore whose \"black ships\" forced Japan to open its ports.", find: "perry" },
+  { name: "Nakayama Miki", kanji: "中山みき", dates: "1798 – 1887", role: "Founder of Tenrikyō, one of the first new religions.", find: "nakayama miki" },
+  { name: "Kitasato Shibasaburō", kanji: "北里柴三郎", dates: "1853 – 1931", role: "Bacteriologist and pioneer of serum therapy.", find: "kitasato" },
+  { name: "Hiratsuka Raichō", kanji: "平塚らいてう", dates: "1886 – 1971", role: "Feminist writer and founder of the journal Seitō.", find: "hiratsuka" },
+  { name: "Emperor Hirohito", kanji: "昭和天皇", dates: "1901 – 1989", role: "The Shōwa emperor; reigned from 1926 through war, defeat, and recovery.", find: "hirohito" },
+  { name: "Miyazaki Hayao", kanji: "宮崎駿", dates: "b. 1941", role: "Animator whose films reimagine Shinto animism for a global audience.", find: "miyazaki" },
+];
+
+// Glossary. Shown in alphabetical order whatever the order here.
+const GLOSSARY = [
+  { term: "bakufu", kanji: "幕府", text: "\"Tent government\": the military administration headed by a shogun. Kamakura, Muromachi, and Edo each had one." },
+  { term: "daimyō", kanji: "大名", text: "A regional lord. Under the Tokugawa, one whose domain was assessed at 10,000 koku of rice or more." },
+  { term: "han", kanji: "藩", text: "A daimyō's domain in the Edo period; some 260 existed. Abolished in 1871 and replaced by prefectures." },
+  { term: "ikki", kanji: "一揆", text: "A league sworn to act together, and by extension the uprising it launches — by peasants, warriors, or religious sects." },
+  { term: "kami", kanji: "神", text: "The gods and spirits of Shinto: forces of nature, ancestors, deified people, and the deities of myth." },
+  { term: "kamuy", kanji: "カムイ", text: "In Ainu belief, a spirit or god dwelling in animals, plants, objects, and natural forces." },
+  { term: "kana", kanji: "仮名", text: "The two syllabic scripts, hiragana and katakana, used alongside kanji." },
+  { term: "kōan", kanji: "公案", text: "A paradoxical case or question used in Rinzai Zen training to break habitual thinking." },
+  { term: "kokugaku", kanji: "国学", text: "\"National learning\": the 18th-century school that sought a native Japanese spirit in the oldest texts." },
+  { term: "kōminka", kanji: "皇民化", text: "\"Making imperial subjects\": the wartime campaign to assimilate colonized Koreans and Taiwanese." },
+  { term: "mappō", kanji: "末法", text: "The \"Latter Day of the Law\": the degenerate age, held in Japan to have begun in 1052, in which enlightenment by one's own effort is out of reach." },
+  { term: "mikkyō", kanji: "密教", text: "Esoteric Buddhism, passed from master to initiated disciple; the basis of Shingon and a strand of Tendai." },
+  { term: "nembutsu", kanji: "念仏", text: "Invoking Amida Buddha with the phrase \"Namu Amida Butsu\"; the central practice of Pure Land Buddhism." },
+  { term: "nengō", kanji: "年号", text: "An era name, such as Meiji or Reiwa. Since 1868 there has been one per reign." },
+  { term: "onryō", kanji: "怨霊", text: "The vengeful spirit of someone who died wronged, blamed for plague and disaster and pacified by enshrinement." },
+  { term: "on'yomi / kun'yomi", kanji: "音読み・訓読み", text: "The two ways to read a kanji: by its Chinese-derived sound, or by the native Japanese word of the same meaning." },
+  { term: "rangaku", kanji: "蘭学", text: "\"Dutch learning\": the study of Western science and medicine through Dutch books during the Edo period." },
+  { term: "ritsuryō", kanji: "律令", text: "The Chinese-style penal (ritsu) and administrative (ryō) codes on which the 8th-century state was built." },
+  { term: "rōnin", kanji: "浪人", text: "A samurai without a lord." },
+  { term: "sakoku", kanji: "鎖国", text: "\"Closed country\": the Tokugawa system of tightly restricted foreign contact, 1630s–1850s. The word itself was coined only in 1801." },
+  { term: "samurai", kanji: "侍", text: "A member of the hereditary warrior class; the word comes from a verb meaning \"to serve\". Also called bushi." },
+  { term: "sankin-kōtai", kanji: "参勤交代", text: "Alternate attendance: daimyō spent alternate years in Edo and left their families there as hostages." },
+  { term: "shinbutsu-shūgō", kanji: "神仏習合", text: "The fusion of kami worship and Buddhism that prevailed until the two were forcibly separated in 1868." },
+  { term: "shōgun", kanji: "将軍", text: "Short for sei-i taishōgun, \"barbarian-subduing generalissimo\". Originally a temporary command against the Emishi; from 1192 the title of Japan's military ruler." },
+  { term: "tennō", kanji: "天皇", text: "\"Heavenly sovereign\": the emperor. The title dates from the late 7th century." },
+  { term: "ukiyo-e", kanji: "浮世絵", text: "\"Pictures of the floating world\": woodblock prints and paintings of actors, beauties, and landscapes." },
+  { term: "wabi-sabi", kanji: "侘寂", text: "An aesthetic that finds beauty in the plain, the weathered, and the impermanent." },
+  { term: "wasei-eigo", kanji: "和製英語", text: "\"Japan-made English\": words built from English parts that English itself does not have, such as salaryman." },
+  { term: "yōkai", kanji: "妖怪", text: "Supernatural creatures and uncanny phenomena of folklore — kappa, tengu, oni, shape-shifting foxes, and many more." },
+];
+
+// Further reading: standard books for checking and extending the entries,
+// not a list of the sources the entries were written from.
+const READING = [
+  {
+    group: "Surveys",
+    items: [
+      { author: "Conrad Totman", title: "A History of Japan", year: "2nd ed., 2005" },
+      { author: "William Wayne Farris", title: "Japan to 1600: A Social and Economic History", year: "2009" },
+      { author: "Marius B. Jansen", title: "The Making of Modern Japan", year: "2000" },
+      { author: "Andrew Gordon", title: "A Modern History of Japan: From Tokugawa Times to the Present", year: "4th ed., 2020" },
+      { author: "John Whitney Hall et al., eds.", title: "The Cambridge History of Japan", year: "6 vols., 1988–1999" },
+    ],
+  },
+  {
+    group: "Primary texts in translation",
+    items: [
+      { author: "Gustav Heldt, trans.", title: "The Kojiki: An Account of Ancient Matters", year: "2014" },
+      { author: "Royall Tyler, trans.", title: "The Tale of Genji", year: "2001" },
+      { author: "Royall Tyler, trans.", title: "The Tale of the Heike", year: "2012" },
+      { author: "Wm. Theodore de Bary et al., eds.", title: "Sources of Japanese Tradition", year: "2nd ed., 2 vols., 2001–2005" },
+    ],
+  },
+  {
+    group: "Religion & folklore",
+    items: [
+      { author: "Helen Hardacre", title: "Shinto: A History", year: "2017" },
+      { author: "Richard Bowring", title: "The Religious Traditions of Japan, 500–1600", year: "2005" },
+      { author: "Michael Dylan Foster", title: "The Book of Yōkai: Mysterious Creatures of Japanese Folklore", year: "2015" },
+      { author: "Ian Reader", title: "Religious Violence in Contemporary Japan: The Case of Aum Shinrikyō", year: "2000" },
+    ],
+  },
+  {
+    group: "Ainu, Ryukyu & empire",
+    items: [
+      { author: "Brett L. Walker", title: "The Conquest of Ainu Lands: Ecology and Culture in Japanese Expansion, 1590–1800", year: "2001" },
+      { author: "Gregory Smits", title: "Maritime Ryukyu, 1050–1650", year: "2019" },
+      { author: "George H. Kerr", title: "Okinawa: The History of an Island People", year: "1958" },
+      { author: "Ramon H. Myers and Mark R. Peattie, eds.", title: "The Japanese Colonial Empire, 1895–1945", year: "1984" },
+      { author: "Louise Young", title: "Japan's Total Empire: Manchuria and the Culture of Wartime Imperialism", year: "1998" },
+    ],
+  },
+  {
+    group: "Language, science & society",
+    items: [
+      { author: "Bjarke Frellesvig", title: "A History of the Japanese Language", year: "2010" },
+      { author: "Tessa Morris-Suzuki", title: "The Technological Transformation of Japan: From the Seventeenth to the Twenty-First Century", year: "1994" },
+      { author: "Sharon L. Sievers", title: "Flowers in Salt: The Beginnings of Feminist Consciousness in Modern Japan", year: "1983" },
+      { author: "John W. Dower", title: "Embracing Defeat: Japan in the Wake of World War II", year: "1999" },
+    ],
+  },
+];
+// @end-reference-data
+</script>
+
+<!-- ===== APP ===== -->
+<script>
+const $ = id => document.getElementById(id);
+const timeline = $('timeline');
+const eraNav = $('eraNav');
+const topicCards = $('topicCards');
+const searchInput = $('searchInput');
+const searchCount = $('searchCount');
+const clearBtn = $('clearBtn');
+const noResults = $('noResults');
+const scrollTopBtn = $('scrollTop');
+const controls = document.querySelector('.controls');
+const navSep = eraNav.querySelector('.nav-sep');     // era links go before it, reference links after
+const figureGrid = $('figureGrid');
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+const topicById = Object.fromEntries(TOPICS.map(t => [t.id, t]));
+const cards = [];        // { node, entry, haystack } for every rendered entry
 let activeTopic = null;
 
-// Count
-document.getElementById('totalEntries').textContent = allCards.length;
-
-// Count per topic
-const topicCounts = {};
-allCards.forEach(c => {
-  const t = c.dataset.topic;
-  topicCounts[t] = (topicCounts[t] || 0) + 1;
-});
-Object.keys(topicCounts).forEach(t => {
-  const el = document.getElementById('count-' + t);
-  if (el) el.textContent = ' (' + topicCounts[t] + ')';
-});
-
-// Intersection observer
-const obs = new IntersectionObserver(entries => {
-  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-}, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
-allCards.forEach(c => obs.observe(c));
-
-// Nav
-function updateNav() {
-  let cur = '';
-  eraSections.forEach(s => { if (s.id && window.scrollY >= s.offsetTop - 180) cur = s.id; });
-  navLinks.forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#' + cur));
+// === HELPERS ===
+function el(tag, className, text) {
+  const node = document.createElement(tag);
+  if (className) node.className = className;
+  if (text) node.textContent = text;
+  return node;
 }
-window.addEventListener('scroll', updateNav);
 
-// Scroll top
-const stb = document.getElementById('scrollTop');
-window.addEventListener('scroll', () => stb.classList.toggle('show', window.scrollY > 500));
+function clone(templateId) {
+  return $(templateId).content.firstElementChild.cloneNode(true);
+}
+
+// Put text into a template slot, or drop the slot when there is nothing to show.
+function fill(root, selector, text) {
+  const slot = root.querySelector(selector);
+  if (text) slot.textContent = text;
+  else slot.remove();
+}
+
+// === SCROLL REVEAL ===
+// Cards fade in as they scroll into view. The hidden starting state is only applied
+// here, so nothing stays invisible without the observer or with reduced motion on.
+const revealer = !reduceMotion && 'IntersectionObserver' in window
+  ? new IntersectionObserver(
+      items => items.forEach(item => { if (item.isIntersecting) reveal(item.target); }),
+      { threshold: 0.1, rootMargin: '0px 0px -30px 0px' })
+  : null;
+
+function reveal(card) {
+  card.classList.remove('pre-reveal');
+  if (revealer) revealer.unobserve(card);
+}
+
+// === RENDER ===
+function renderEntry(entry) {
+  const card = clone('entryTpl');
+  card.dataset.topic = entry.topic;
+  fill(card, '.entry-topic-label', entry.label || topicById[entry.topic].label);
+  fill(card, '.entry-date', entry.date);
+  fill(card, '.entry-title', entry.title);
+  fill(card, '.entry-text', entry.text);
+  fill(card, '.cflag', entry.flag);
+
+  const loanBlock = card.querySelector('.lw-block');
+  if (entry.loanwords) {
+    loanBlock.querySelector('.lw-label').textContent = entry.loanwords.label;
+    loanBlock.querySelector('.lw-items').append(...entry.loanwords.items.map(([japanese, romaji, meaning]) => {
+      const chip = el('span', 'lw-chip', japanese + ' ');
+      chip.append(el('span', 'r', romaji), ' ', el('span', 'm', '— ' + meaning));
+      return chip;
+    }));
+  } else {
+    loanBlock.remove();
+  }
+
+  const tags = card.querySelector('.entry-tags');
+  if (entry.tags && entry.tags.length) tags.append(...entry.tags.map(tag => el('span', 'etag', tag)));
+  else tags.remove();
+
+  return card;
+}
+
+ENTRIES.forEach(entry => {
+  if (!topicById[entry.topic] || !ERAS.some(era => era.id === entry.era)) {
+    console.warn('Entry not shown — unknown era or topic:', entry.title, entry);
+  }
+});
+
+ERAS.forEach((era, i) => {
+  const link = el('a', '', era.nav);
+  link.href = '#' + era.id;
+  navSep.before(link);
+
+  if (i > 0) timeline.append(clone('dividerTpl'));
+
+  const section = clone('eraTpl');
+  section.id = era.id;
+  section.classList.add('era-' + era.id);
+  section.querySelector('.era-kanji').textContent = era.kanji;
+  section.querySelector('h2').textContent = era.title;
+  section.querySelector('.era-dates').textContent = era.dates;
+
+  const grid = section.querySelector('.entry-grid');
+  ENTRIES.filter(entry => entry.era === era.id && topicById[entry.topic]).forEach(entry => {
+    const node = renderEntry(entry);
+    const haystack = ((entry.keywords || '') + ' ' + node.textContent).toLowerCase();
+    cards.push({ node, entry, haystack });
+    if (revealer) {
+      node.classList.add('pre-reveal');
+      revealer.observe(node);
+    }
+    grid.append(node);
+  });
+  timeline.append(section);
+});
+
+TOPICS.forEach(topic => {
+  const button = el('button', 'topic-card', topic.icon + ' ' + topic.name);
+  button.type = 'button';
+  button.dataset.topic = topic.id;
+  button.setAttribute('aria-pressed', 'false');
+  const count = cards.filter(card => card.entry.topic === topic.id).length;
+  button.append(el('span', 'card-count', ' (' + count + ')'));
+  topicCards.append(button);
+});
+
+$('totalEntries').textContent = cards.length;
+$('statEras').textContent = ERAS.length;
+$('statTopics').textContent = TOPICS.length;
+
+// === REFERENCE SECTIONS ===
+// Period strip: one group per era, one tile per named period, each linking to its era.
+ERAS.forEach(era => {
+  const periods = PERIODS.filter(period => period.era === era.id);
+  if (!periods.length) return;
+  const label = el('a', 'period-group-label', era.nav);
+  label.href = '#' + era.id;
+  const tiles = el('div', 'period-tiles');
+  tiles.append(...periods.map(period => {
+    const tile = el('a', 'period');
+    tile.href = '#' + era.id;
+    const kanji = el('span', 'period-kanji', period.kanji);
+    kanji.lang = 'ja';
+    tile.append(kanji, el('span', 'period-name', period.name), el('span', 'period-dates', period.dates));
+    return tile;
+  }));
+  const group = el('div', 'period-group');
+  group.append(label, tiles);
+  $('periodStrip').append(group);
+});
+
+// Key figures: selecting one searches the timeline for `find` (see the click handler below).
+figureGrid.append(...FIGURES.map(figure => {
+  const button = el('button', 'figure');
+  button.type = 'button';
+  button.dataset.find = figure.find;
+  const name = el('span', 'figure-name', figure.name);
+  const kanji = el('span', 'figure-kanji', figure.kanji);
+  kanji.lang = 'ja';
+  name.append(' ', kanji);
+  button.append(name, el('span', 'figure-dates', figure.dates), el('span', 'figure-role', figure.role));
+  return button;
+}));
+
+$('glossaryList').append(...[...GLOSSARY].sort((a, b) => a.term.localeCompare(b.term, 'en')).map(item => {
+  const term = el('dt', '', item.term);
+  const kanji = el('span', '', item.kanji);
+  kanji.lang = 'ja';
+  term.append(' ', kanji);
+  const row = el('div', 'gl-item');
+  row.append(term, el('dd', '', item.text));
+  return row;
+}));
+
+$('readingList').append(...READING.map(group => {
+  const list = el('ul');
+  list.append(...group.items.map(item => {
+    const line = el('li', '', item.author + ', ');
+    line.append(el('cite', '', item.title), ' (' + item.year + ')');
+    return line;
+  }));
+  const block = el('div', 'reading-group');
+  block.append(el('h3', '', group.group), list);
+  return block;
+}));
+
+const sections = [...timeline.querySelectorAll('.era-section')];
+const dividers = [...timeline.querySelectorAll('.sdiv')];   // dividers[i] sits between sections[i] and sections[i + 1]
+const navLinks = [...eraNav.querySelectorAll('a')];
+const navTargets = [...sections, ...document.querySelectorAll('.ref-section')];
+const topicButtons = [...topicCards.querySelectorAll('.topic-card')];
+
+// === STICKY BAR HEIGHT ===
+// The bar grows and shrinks as the filter buttons wrap; anchor offsets (--bar-h in the CSS)
+// and the active-section check follow it.
+let barHeight = 0;
+function syncBarHeight() {
+  barHeight = controls.offsetHeight;
+  document.documentElement.style.setProperty('--bar-h', barHeight + 'px');
+}
+syncBarHeight();
+if ('ResizeObserver' in window) new ResizeObserver(syncBarHeight).observe(controls);
+
+// === SCROLL: active section + back-to-top button ===
+function onScroll() {
+  const y = window.scrollY;
+  let current = '';
+  navTargets.forEach(section => {
+    if (!section.classList.contains('era-hidden') && y >= section.offsetTop - barHeight + 35) current = section.id;
+  });
+  navLinks.forEach(link => link.classList.toggle('active', link.hash === '#' + current));
+  scrollTopBtn.classList.toggle('show', y > 500);
+}
+window.addEventListener('scroll', onScroll, { passive: true });
+scrollTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' }));
 
 // === TOPIC FILTER ===
-function toggleTopic(el) {
-  const topic = el.dataset.topic;
-  if (activeTopic === topic) {
-    activeTopic = null;
-    el.classList.remove('active');
-  } else {
-    document.querySelectorAll('.topic-card').forEach(c => c.classList.remove('active'));
-    activeTopic = topic;
-    el.classList.add('active');
-  }
+function setTopic(topic) {
+  activeTopic = topic;
+  topicButtons.forEach(button => {
+    const on = button.dataset.topic === topic;
+    button.classList.toggle('active', on);
+    button.setAttribute('aria-pressed', String(on));
+  });
   applyFilters();
 }
+
+topicCards.addEventListener('click', event => {
+  const button = event.target.closest('.topic-card');
+  if (button) setTopic(button.dataset.topic === activeTopic ? null : button.dataset.topic);
+});
 
 // === SEARCH ===
 let searchTimer;
 searchInput.addEventListener('input', () => { clearTimeout(searchTimer); searchTimer = setTimeout(applyFilters, 180); });
-searchInput.addEventListener('keydown', e => { if (e.key === 'Escape') clearAll(); });
+searchInput.addEventListener('keydown', event => { if (event.key === 'Escape') clearAll(); });
+clearBtn.addEventListener('click', clearAll);
 
 function clearAll() {
+  clearTimeout(searchTimer);
   searchInput.value = '';
-  activeTopic = null;
-  document.querySelectorAll('.topic-card').forEach(c => c.classList.remove('active'));
-  applyFilters();
+  setTopic(null);
   searchInput.focus();
 }
 
+// Selecting a key figure searches for them and jumps to the first result.
+figureGrid.addEventListener('click', event => {
+  const button = event.target.closest('.figure');
+  if (!button) return;
+  clearTimeout(searchTimer);
+  searchInput.value = button.dataset.find;
+  setTopic(null);                       // clears any topic filter and applies the search
+  const first = sections.find(section => !section.classList.contains('era-hidden'));
+  (first || timeline).scrollIntoView();
+});
+
 function applyFilters() {
   const query = searchInput.value.trim().toLowerCase();
-  clearHighlights();
-  noResults.classList.remove('show');
-
-  const hasFilter = query || activeTopic;
-  clearBtn.classList.toggle('show', hasFilter);
-
+  const hasFilter = Boolean(query || activeTopic);
   let matchCount = 0;
 
-  allCards.forEach(card => {
-    let show = true;
+  clearHighlights();
 
-    // Topic filter
-    if (activeTopic && card.dataset.topic !== activeTopic) show = false;
-
-    // Search filter
-    if (show && query) {
-      const ds = (card.dataset.search || '').toLowerCase();
-      const tc = card.textContent.toLowerCase();
-      if (!ds.includes(query) && !tc.includes(query)) show = false;
-    }
-
-    card.classList.toggle('hidden', !show);
-    card.classList.remove('search-match');
-    if (show) {
-      matchCount++;
-      if (query) {
-        card.classList.add('search-match');
-        highlightText(card, searchInput.value.trim());
-      }
-      // Ensure visible for animation
-      card.classList.add('visible');
-    }
+  cards.forEach(({ node, entry, haystack }) => {
+    const show = (!activeTopic || entry.topic === activeTopic) && (!query || haystack.includes(query));
+    node.classList.toggle('hidden', !show);
+    node.classList.toggle('search-match', show && Boolean(query));
+    if (!show) return;
+    matchCount++;
+    reveal(node);                       // results should not wait for the scroll animation
+    if (query) highlight(node, query);
   });
 
-  // Hide empty eras
-  eraSections.forEach((sec, i) => {
-    const visible = sec.querySelectorAll('.entry-card:not(.hidden)');
-    sec.classList.toggle('era-hidden', visible.length === 0);
-  });
-  dividers.forEach((d, i) => {
-    const prevSec = eraSections[i];
-    const nextSec = eraSections[i + 1];
-    const hide = (prevSec && prevSec.classList.contains('era-hidden')) || (nextSec && nextSec.classList.contains('era-hidden'));
-    d.classList.toggle('hidden', hide);
+  // Hide eras with nothing left in them, and the dividers on either side.
+  sections.forEach(section => section.classList.toggle('era-hidden', !section.querySelector('.entry-card:not(.hidden)')));
+  dividers.forEach((divider, i) => {
+    divider.classList.toggle('hidden', sections[i].classList.contains('era-hidden') || sections[i + 1].classList.contains('era-hidden'));
   });
 
-  // Count
-  if (hasFilter) {
-    searchCount.textContent = matchCount + ' of ' + allCards.length + ' entries';
-    if (matchCount === 0) noResults.classList.add('show');
-  } else {
-    searchCount.textContent = '';
-  }
+  clearBtn.classList.toggle('show', hasFilter);
+  searchCount.textContent = hasFilter ? matchCount + ' of ' + cards.length + ' entries' : '';
+  noResults.classList.toggle('show', hasFilter && matchCount === 0);
+  onScroll();
 }
 
-// Highlight
+// === HIGHLIGHT ===
 function clearHighlights() {
-  document.querySelectorAll('.hl').forEach(el => {
-    el.parentNode.replaceChild(document.createTextNode(el.textContent), el);
-    el.parentNode.normalize();
+  timeline.querySelectorAll('.hl').forEach(mark => {
+    const parent = mark.parentNode;     // read before replacing: a detached node has no parent
+    parent.replaceChild(document.createTextNode(mark.textContent), mark);
+    parent.normalize();
   });
 }
 
-function highlightText(el, q) {
-  if (!q) return;
-  const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT);
-  const nodes = [];
-  while (walker.nextNode()) nodes.push(walker.currentNode);
-  const lq = q.toLowerCase();
-  nodes.forEach(node => {
-    if (node.parentElement.tagName === 'SCRIPT' || node.parentElement.tagName === 'STYLE') return;
-    const txt = node.textContent;
-    const idx = txt.toLowerCase().indexOf(lq);
-    if (idx === -1) return;
-    const span = document.createElement('span');
-    span.className = 'hl';
-    span.textContent = txt.substring(idx, idx + q.length);
-    const frag = document.createDocumentFragment();
-    if (idx > 0) frag.appendChild(document.createTextNode(txt.substring(0, idx)));
-    frag.appendChild(span);
-    if (idx + q.length < txt.length) frag.appendChild(document.createTextNode(txt.substring(idx + q.length)));
-    node.parentNode.replaceChild(frag, node);
+// Wrap every occurrence of `query` (already lower-cased) in the card's text.
+function highlight(card, query) {
+  const walker = document.createTreeWalker(card, NodeFilter.SHOW_TEXT);
+  const textNodes = [];
+  while (walker.nextNode()) textNodes.push(walker.currentNode);
+
+  textNodes.forEach(textNode => {
+    const text = textNode.textContent;
+    const lower = text.toLowerCase();
+    let at = lower.indexOf(query);
+    if (at === -1 || lower.length !== text.length) return;
+
+    const pieces = document.createDocumentFragment();
+    let from = 0;
+    while (at !== -1) {
+      if (at > from) pieces.append(text.slice(from, at));
+      pieces.append(el('span', 'hl', text.slice(at, at + query.length)));
+      from = at + query.length;
+      at = lower.indexOf(query, from);
+    }
+    if (from < text.length) pieces.append(text.slice(from));
+    textNode.replaceWith(pieces);
   });
 }
+
+onScroll();
 </script>
 </body>
 </html>
